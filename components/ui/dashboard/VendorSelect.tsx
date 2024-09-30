@@ -10,7 +10,7 @@ const VendorSelectPage = () => {
       <Topnav />
 
       {/* Main Content */}
-      <div className="w-full px-14 mt-6 text-left">
+      <div className="w-full mt-6 text-left">
           <Vendor/>
       </div>
     </div>

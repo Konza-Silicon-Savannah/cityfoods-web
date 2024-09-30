@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Header = () => {
   return (
-    <header className="w-full container flex justify-between items-center py-4">
+    <header className="w-full container flex justify-between items-center py-4 px-6">
         <div className="flex items-center border-b border-gray-300">
           <SearchIcon className="text-gray-500" />
           <input

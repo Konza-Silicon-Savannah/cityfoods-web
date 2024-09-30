@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Categories = () => {
   return (
-    <section className="bg-white rounded-lg container w-full mt-4 mb-4">
+    <section className="rounded-lg container w-full mt-4 mb-4">
         <div className="p-6">
             <p className="font-semibold text-gray-800 capitalize  dark:text-white">Popular Categories</p>
             <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-10 md:grid-cols-2 xl:grid-cols-5">

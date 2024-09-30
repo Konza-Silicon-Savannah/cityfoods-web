@@ -2,7 +2,7 @@ import React from 'react'
 
 const Vendor = () => {
   return (
-    <div>
+    <div className='px-6'>
         <h3 className="text-lg font-semibold mb-2 mt-4">Available Vendors</h3>
         <p className="mb-6">Select a vendor to view available menu items</p>
 
