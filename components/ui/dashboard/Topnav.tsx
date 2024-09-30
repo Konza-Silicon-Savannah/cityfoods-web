@@ -9,9 +9,9 @@ const Topnav = () => {
       <Header/>
 
       {/* Main Content */}
-      <main className="w-full max-w-4xl mt-6">
+      <main className="w-full max-w-6xl mt-6">
         <section className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-400 rounded-lg">
-            <div className="container px-4 py-8 mx-auto lg:flex lg:items-center lg:justify-between">
+            <div className="py-8 mx-12 lg:flex lg:items-center lg:justify-between">
                 <div className="lg:items-start lg:justify-start text-left px-4">
                     <h2 className="text-2xl font-semibold mb-2 text-white">Craving something delicious?</h2>
                     <p className="mb-4">

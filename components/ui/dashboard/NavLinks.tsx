@@ -9,7 +9,8 @@ import { link } from 'fs';
 
 //Map of links to display in the side navigation.
 const links = [
-    { name: 'Home', href: '/dashboard'},
+    { name: 'dash', href: '/dashboard'},
+    { name: 'home', href: '/dashboard/home'},
     { 
         name: 'orders',
         href: '/dashboard/orders'
