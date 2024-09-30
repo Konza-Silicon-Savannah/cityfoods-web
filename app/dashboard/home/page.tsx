@@ -5,10 +5,11 @@ import Foodcard from '@/components/ui/dashboard/Foodcard'
 
 const HomePage = () => {
   return (
-    <div className='min-h-screen bg-green-50 flex flex-col p-8'>
+    <div className='w-full min-h-screen bg-green-50 flex flex-col p-8'>
         <Topnav />
-        <div className='p-4'></div>
+        <div className='container'>
         <Categories />
+        </div>
         <Foodcard />
     </div>
   )

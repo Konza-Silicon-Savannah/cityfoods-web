@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 const Categories = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 rounded-lg">
-        <div className="container p-6">
+    <section className="bg-white rounded-lg container w-full mt-4 mb-4">
+        <div className="p-6">
             <p className="font-semibold text-gray-800 capitalize  dark:text-white">Popular Categories</p>
             <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-10 md:grid-cols-2 xl:grid-cols-5">
                 <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
