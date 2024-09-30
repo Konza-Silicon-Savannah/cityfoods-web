@@ -1,9 +1,8 @@
 import React from "react";
+import HomeDash from "@/components/ui/dashboard/Home";
 
 export default function Home() {
   return (
-    <>
-      <p>Main items</p>
-    </>
+      <HomeDash/>
   );
 }
