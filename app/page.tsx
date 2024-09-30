@@ -9,10 +9,9 @@ import Footer from "@/components/ui/home/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-white h-full">
+    <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <Nav/>
-        {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
       </header>
       <Hero/>
       <Categories/>
