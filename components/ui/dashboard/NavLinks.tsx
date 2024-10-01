@@ -4,20 +4,32 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { link } from 'fs';
-
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 //Map of links to display in the side navigation.
 const links = [
-    { name: 'dash', href: '/dashboard'},
-    { name: 'home', href: '/dashboard/home'},
+    { 
+        name: 'dash',
+        href: '/dashboard',
+        icon: <MenuOpenIcon/>
+    },
+    { 
+        name: 'home', 
+        href: '/dashboard/home',
+        icon: <HomeIcon />
+    },
     { 
         name: 'orders',
-        href: '/dashboard/orders'
+        href: '/dashboard/orders',
+        icon: <LocalMallIcon />
     },
     {
         name: 'wallet',
-        href: '/dashboard/wallet'
+        href: '/dashboard/wallet',
+        icon: <AccountBalanceWalletIcon />
     }
 ];
 
@@ -35,7 +47,10 @@ const NavLinks = () => {
                             },
                         )}'
                     >
-                        <p className='hidden md:block'>{link.name}</p>
+                        <div className='flex gap-2 items-center text-green-700'>
+                            {link.icon}
+                            <p className='hidden md:block'>{link.name}</p>
+                        </div>
                     </Link>
                 );
             })}
