@@ -32,7 +32,7 @@ type CardProps = React.ComponentProps<typeof Card>
 
 export function CardAnalytics({ className, ...props }: CardProps) {
   return (
-    <Card className={cn("shadow-none border-none flex-row px-4", className)} {...props}>
+    <Card className={cn("shadow-none border border-b-0 pb-0 flex-row px-4", className)} {...props}>
         <CardHeader className="px-0">
             <CardTitle>Business Overview</CardTitle>
         </CardHeader>
