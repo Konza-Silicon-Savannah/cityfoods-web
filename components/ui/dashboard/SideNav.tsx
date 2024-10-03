@@ -14,8 +14,8 @@ const SideNav = () => {
             City <span className="text-green-500">Foods</span>
             </div>
         </Link>
-        <div className='flex grow flex-row space-x-2 md:flex-col md:space-x-0 md:space-y-2'>
-            <NavLinks/>
+        <div className="flex flex-row space-x-6 md:flex-col md:space-x-0 md:space-y-2 fixed bottom-0 left-0 right-0 md:relative md:bottom-auto rounded-t-lg ">
+            <NavLinks />
         </div>
     </div>
   )
