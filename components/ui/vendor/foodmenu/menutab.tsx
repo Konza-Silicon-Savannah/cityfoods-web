@@ -21,7 +21,7 @@ import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
 export function TabsMenu() {
   return (
     <Tabs defaultValue="account" className="w-full mt-2">
-      <TabsList className="grid w-full grid-cols-4">
+      <TabsList className="grid w-full grid-cols-4 my-4">
         <TabsTrigger value="account" className="rounded-full"><span>Main</span></TabsTrigger>
         <TabsTrigger value="desert" className="rounded-full">Desert</TabsTrigger>
         <TabsTrigger value="drinks" className="rounded-full">Drinks</TabsTrigger>

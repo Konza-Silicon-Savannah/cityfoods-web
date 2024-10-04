@@ -37,6 +37,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { Combobox } from './multiselect';
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -51,6 +52,7 @@ const formSchema = z.object({
     menucategory: z.string().min(2, {
         message: "price must be at least 2 characters.",
       }),
+    days: z.array(z.string()).optional(),
   })
 
 // Separate toast function
@@ -99,7 +101,7 @@ export default function FoodAdd() {
                     </DialogHeader>
                     <div className="grid gap-2 py-2">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
                                 <FormField 
                                     control={form.control}
                                     name="name"
@@ -160,6 +162,18 @@ export default function FoodAdd() {
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField 
+                                    control={form.control}
+                                    name="days"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Available on ?</FormLabel>
+                                            <FormControl>
+                                                <Combobox value={field.value ?? []} onChange={field.onChange} />
                                             </FormControl>
                                         </FormItem>
                                     )}

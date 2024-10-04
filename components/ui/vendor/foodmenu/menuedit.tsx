@@ -7,7 +7,6 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,7 +28,6 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -37,6 +35,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { Combobox } from './multiselect';
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -46,11 +45,12 @@ const formSchema = z.object({
         message: "price must be at least 2 characters.",
       }),
     description: z.string().min(2, {
-        message: "price must be at least 2 characters.",
+        message: "description must be at least 2 characters.",
       }),
     menucategory: z.string().min(2, {
-        message: "price must be at least 2 characters.",
+        message: "category must be selected.",
       }),
+    days: z.array(z.string()).optional(),
   })
 
 // Separate toast function
@@ -82,6 +82,7 @@ export default function FoodEdit() {
           price:"",
           description:"",
           menucategory:"",
+          days:[],
         },
       })
     return (
@@ -99,7 +100,7 @@ export default function FoodEdit() {
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
                                 <FormField 
                                     control={form.control}
                                     name="name"
@@ -148,7 +149,7 @@ export default function FoodEdit() {
                                             <FormControl>
                                                 <Select onValueChange={field.onChange} value={field.value}>
                                                     <SelectTrigger className="w-full">
-                                                        <SelectValue placeholder='previous description' {...field} />
+                                                        <SelectValue placeholder='Main Course' {...field} />
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectGroup>
@@ -164,6 +165,19 @@ export default function FoodEdit() {
                                         </FormItem>
                                     )}
                                 />
+                                <FormField 
+                                    control={form.control}
+                                    name="days"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Available on ?</FormLabel>
+                                            <FormControl>
+                                                <Combobox value={field.value ?? []} onChange={field.onChange} />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                
                                 <Button 
                                     variant="default" 
                                     className="w-full" 
