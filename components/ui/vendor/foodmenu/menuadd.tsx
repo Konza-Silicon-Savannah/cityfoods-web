@@ -53,7 +53,17 @@ const formSchema = z.object({
         message: "price must be at least 2 characters.",
       }),
     days: z.array(z.string()).optional(),
-  })
+    image: z.any()
+        .refine((file) => file instanceof File, {
+            message: "Please upload a file",
+        })
+        .refine((file) => ["image/jpeg", "image/png"].includes(file?.type), {
+            message: "Only .jpg and .png files are accepted.",
+        })
+        .refine((file) => file?.size <= 5 * 1024 * 1024, {
+            message: "File size should be less than 5MB.",
+        })
+  });
 
 // Separate toast function
 function showToast() {
@@ -84,6 +94,8 @@ export default function FoodAdd() {
           price:"",
           description:"",
           menucategory:"",
+          days: [],
+          image: undefined,
         },
       })
     return (
@@ -175,6 +187,28 @@ export default function FoodAdd() {
                                             <FormControl>
                                                 <Combobox value={field.value ?? []} onChange={field.onChange} />
                                             </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField 
+                                    control={form.control}
+                                    name="image"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Upload Image</FormLabel>
+                                            <FormControl>
+                                            <Input 
+                                                type="file" 
+                                                accept="image/jpeg, image/png" 
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        field.onChange(file);
+                                                    }
+                                                }} 
+                                            />
+                                            </FormControl>
+                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />

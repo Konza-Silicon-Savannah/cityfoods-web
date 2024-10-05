@@ -39,7 +39,7 @@ export function OrderCard({ className, ...props }: CardProps) {
           {fooditems.map((fooditem, index) => (
             <div
               key={index}
-              className="mb-4 flex items-center p-4 last:mb-2 last:pb-4 space-x-4 rounded-md border"
+              className="mb-4 flex items-center p-2 last:mb-2 last:pb-4 space-x-4 rounded-md border"
             >
               <div className="flex-1 space-y-1 ">
                 <p className="text-sm font-medium leading-none">
@@ -72,14 +72,16 @@ export function OrderCard({ className, ...props }: CardProps) {
                 <p>Kes 2079.00</p>
             </div>
         </div>
-        <Button className="w-full bg-green-800">
-              Pay with M-Pesa 
-        </Button>
-        <Link href="/dashboard/payment">
-          <Button className="w-full bg-green-800 mt-4">
-                Pay with Card 
+        <div className="grid grid-flow-col gap-8">
+          <Button className="w-full bg-green-800">
+                M-pesa
           </Button>
-        </Link>
+          <Link href="/dashboard/payment">
+            <Button variant="outline" className="w-full border-cyan-500">
+                  Visa pay
+            </Button>
+          </Link>
+        </div>
       </CardFooter>
     </Card>
   )

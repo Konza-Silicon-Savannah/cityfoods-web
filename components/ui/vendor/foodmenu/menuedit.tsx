@@ -51,6 +51,16 @@ const formSchema = z.object({
         message: "category must be selected.",
       }),
     days: z.array(z.string()).optional(),
+    image: z.any()
+        .refine((file) => file instanceof File, {
+            message: "Please upload a valid file",
+        })
+        .refine((file) => ["image/jpeg", "image/png"].includes(file?.type), {
+            message: "Only .jpg and .png files are accepted.",
+        })
+        .refine((file) => file?.size <= 5 * 1024 * 1024, {
+            message: "File size should be less than 5MB.",
+        }),
   })
 
 // Separate toast function
@@ -83,6 +93,7 @@ export default function FoodEdit() {
           description:"",
           menucategory:"",
           days:[],
+          image: undefined,
         },
       })
     return (
@@ -177,7 +188,28 @@ export default function FoodEdit() {
                                         </FormItem>
                                     )}
                                 />
-                                
+                                <FormField 
+                                    control={form.control}
+                                    name="image"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Upload Image</FormLabel>
+                                            <FormControl>
+                                            <Input 
+                                                type="file" 
+                                                accept="image/jpeg, image/png" 
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        field.onChange(file);
+                                                    }
+                                                }} 
+                                            />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
                                 <Button 
                                     variant="default" 
                                     className="w-full" 

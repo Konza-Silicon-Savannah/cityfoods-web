@@ -44,7 +44,7 @@ export function CardForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
                 <FormField 
                     control={form.control}
-                    name="card info"
+                    name="cardinfo"
                     render={({ field })=> (
                         <FormItem>
                             <FormLabel>
@@ -60,7 +60,7 @@ export function CardForm() {
                 <div className="flex flex-1 gap-3">
                     <FormField 
                         control={form.control}
-                        name="card info"
+                        name="cardmonth"
                         render={({ field })=> (
                             <FormItem>
                                 <FormControl>
@@ -72,7 +72,7 @@ export function CardForm() {
                     />
                     <FormField 
                         control={form.control}
-                        name="card info"
+                        name="cardcvc"
                         render={({ field })=> (
                             <FormItem>
                                 <FormControl>

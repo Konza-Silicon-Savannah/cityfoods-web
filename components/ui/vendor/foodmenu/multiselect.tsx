@@ -50,15 +50,15 @@ interface ComboboxProps {
 
 export function Combobox({ value, onChange }: ComboboxProps) {
     const [open, setOpen] = React.useState(false);
-    
 
     const handleSetValue = (val: string) => {
-        if (value.includes(val)) {
-        onChange(value.filter((item) => item !== val));
+        if (Array.isArray(value) && value.includes(val)) {
+            onChange(value.filter((item) => item !== val));
         } else {
-        onChange([...value, val]);
+            onChange([...(Array.isArray(value) ? value : []), val]);
         }
     };
+    
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -100,11 +100,7 @@ export function Combobox({ value, onChange }: ComboboxProps) {
                                     }}
                                 >
                                     <Check
-                                        className={
-                                            cn("mr-2 h-4 w-4", 
-                                            value.includes(weekday.value) ? "opacity-100" : "opacity-0"
-                                            )
-                                        }
+                                        className={cn("mr-2 h-4 w-4", Array.isArray(value) && value.includes(weekday.value) ? "opacity-100" : "opacity-0")}
                                     />
                                     {weekday.label}
                                 </CommandItem>
