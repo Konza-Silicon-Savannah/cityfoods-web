@@ -76,18 +76,18 @@ export const columns: ColumnDef<Payment>[] = [
                 <PopoverTrigger asChild>
                     <Button variant="outline">View</Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-60">
+                <PopoverContent className="w-50">
                     <div className="grid gap-4">
                         <div className="space-y-2">
                             <p className="text-sm text-muted-foreground">
                                 Accept or Reject Order.
                             </p>
                         </div>
-                        <div className="grid gap-2">
-                            <div className="grid items-center gap-4">
-                                <Button>Accept</Button>
+                        <div className="grid grid-flow-col gap-2">
+                            <div className="">
+                                <Button variant="outline" className="">Accept</Button>
                             </div>
-                            <div className="grid items-center gap-4">
+                            <div className="">
                                 <Button variant="destructive">Decline</Button>
                             </div>
                             

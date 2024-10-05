@@ -102,7 +102,7 @@ export default function FoodAdd() {
         <div className=''>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="default" className='rounded-lg'>Add Food Item</Button>
+                    <Button  className='rounded-lg bg-green-600'>Add Food Item</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>

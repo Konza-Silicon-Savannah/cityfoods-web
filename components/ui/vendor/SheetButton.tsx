@@ -1,42 +1,43 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import Link from "next/link"
+import VendorLinks from './vendorlinks'
+import BottomLinks from './bottomnav'
+import { Separator } from "@/components/ui/separator"
 
 export function SheetButton() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">View</Button>
+        <Button variant="outline">Menu</Button>
       </SheetTrigger>
       <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Actions</SheetTitle>
-          <SheetDescription>
-            Update Order Status. Click save when you're done.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+        <div className='h-screen justify-between py-4 px-2'>
+          <div className=''>
+            <div className='flex justify-items-center'>
+                <Link
+                    className='flex justify-center px-5 pb-4'
+                    href='/'
+                    key="logo"
+                >
+                    <div className='flex items-center w-32 font-extrabold md:w-40 '>
+                      City<span className="text-green-500">Foods</span>
+                    </div>
+                </Link>
+            </div>
+            <div className="flex flex-col items-start ">
+                <Separator/>
+                <VendorLinks />
+            </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+          <div className="flex flex-col items-start justify-end">
+            <BottomLinks />
           </div>
         </div>
         <SheetFooter>

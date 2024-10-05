@@ -22,6 +22,21 @@ const formSchema = z.object({
     Card: z.string().min(10, {
         message: "card information must be valid number"
     }),
+    cardmonth: z.string().min(10, {
+        message: "month must not be in the past"
+    }),
+    cardcvc: z.string().min(10, {
+        message: "card information must be valid number"
+    }),
+    cardholder: z.string().min(10, {
+        message: "card information must be fullname"
+    }),
+    cardbilling: z.string().min(10, {
+        message: "Must be the country card was issued"
+    }),
+    cardaddress: z.string().min(10, {
+        message: "address must be as linked in the card"
+    }),
 })
 
 export function CardForm() {
@@ -33,10 +48,16 @@ export function CardForm() {
     })
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
+        return(
+            showToast(),
+            console.log("form submitted",data)
+        )
+    }
+    function showToast() {
         toast({
             title: "You are paying 1000"
         }),
-        console.log(data);
+        console.log("Form Submitted");
     }
 
     return (
@@ -44,7 +65,7 @@ export function CardForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
                 <FormField 
                     control={form.control}
-                    name="cardinfo"
+                    name="Card"
                     render={({ field })=> (
                         <FormItem>
                             <FormLabel>
@@ -85,7 +106,7 @@ export function CardForm() {
                 </div>
                 <FormField 
                     control={form.control}
-                    name="card holder"
+                    name="cardholder"
                     render={({ field })=> (
                         <FormItem>
                             <FormLabel>
@@ -100,7 +121,7 @@ export function CardForm() {
                 />
                 <FormField 
                     control={form.control}
-                    name="card billing"
+                    name="cardbilling"
                     render={({ field })=> (
                         <FormItem className="grid">
                             <FormLabel>
@@ -113,7 +134,7 @@ export function CardForm() {
                 />
                 <FormField 
                     control={form.control}
-                    name="card address"
+                    name="cardaddress"
                     render={({ field })=> (
                         <FormItem className="grid">
                             <FormLabel className="text-blue-600 text-sm font-bold">

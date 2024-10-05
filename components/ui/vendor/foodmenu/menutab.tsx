@@ -28,833 +28,460 @@ export function TabsMenu() {
         <TabsTrigger value="side-dish" className="rounded-full">Side Dish</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4  gap-6">
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <FoodEdit/>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
         </div>
       </TabsContent>
       <TabsContent value="desert">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4  gap-6">
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
         </div>
       </TabsContent>
       <TabsContent value="drinks">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4  gap-6">
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
         </div>
       </TabsContent>
       <TabsContent value="side-dish">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4  gap-6">
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
           <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
+            <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+              <div className="rounded-full w-full">
                 <img
                   src='/images/fishmealhero.png'
                   alt="fooditem"
-                  className="w-full h-32"
+                  className="object-cover h-32 w-full rounded-lg"
                 />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
+              <div className="space-y-2 w-full space-x-6">
+                <h1 className="font-bold px-6 mt-2">Fish Fillets</h1>
                 <p id="name" className="text-sm">
                     The fish fillets are absolutely delicious, the texture is crunchy
                     on the tongue... <span className="text-blue-600">Readmore</span>
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
+            <CardFooter className="justify-between">
+                  <p className="font-extralight">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                  <FoodEdit/>
             </CardFooter>
           </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardContent className="grid grid-row items-center place-items-stretch mt-4 rounded-lg">
-              <div className="rounded-full mt-2">
-                <img
-                  src='/images/fishmealhero.png'
-                  alt="fooditem"
-                  className="w-full h-32"
-                />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="name" className="font-bold">Fish Fillets</Label>
-                <p id="name" className="text-sm">
-                    The fish fillets are absolutely delicious, the texture is crunchy
-                    on the tongue... <span className="text-blue-600">Readmore</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" className="rounded-full">edit</Button>
-              <Button variant="destructive" className="rounded-full">delete</Button>
-            </CardFooter>
-          </Card>
+          
         </div>
       </TabsContent>
     </Tabs>

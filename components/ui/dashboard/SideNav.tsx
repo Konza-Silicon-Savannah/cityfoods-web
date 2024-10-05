@@ -1,22 +1,35 @@
 import React from 'react'
 import Link from 'next/link'
 import NavLinks from './NavLinks'
+import SideBottomLinks from './sidelinks'
+import { Separator } from "@/components/ui/separator"
+
 
 
 const SideNav = () => {
   return (
-    <div className='flex h-full flex-col px-3 py-4 md:px-2'>
-        <Link
-            className='mb-2 flex h-8 items-end justify-start px-4 md:h-10'
-            href='/'
-        >
-            <div className='w-32 font-extrabold md:w-40'>
-            City <span className="text-green-500">Foods</span>
-            </div>
-        </Link>
-        <div className="flex flex-row space-x-6 md:flex-col md:space-x-0 md:space-y-2 fixed bottom-0 left-0 right-0 md:relative md:bottom-auto rounded-t-lg ">
-            <NavLinks />
-        </div>
+    <div className='h-screen grid justify-between py-4 md:px-2'>
+      <div>
+        <div className='flex justify-items-center'>
+            <Link
+                className='flex justify-center px-5 pb-4'
+                href='/'
+                key="logo"
+            >
+                <div className='flex items-center w-32 font-extrabold md:w-40 '>
+                  City<span className="text-green-500">Foods</span>
+                </div>
+            </Link>
+          </div>
+          <div className="flex flex-col items-start ">
+              <Separator/>
+              <NavLinks />
+          </div>
+      </div>
+      <div className="flex flex-col items-start justify-end space-y-2">
+        <Separator/>
+        <SideBottomLinks />
+      </div>
     </div>
   )
 }

@@ -210,13 +210,16 @@ export default function FoodEdit() {
                                         </FormItem>
                                     )}
                                 />
-                                <Button 
-                                    variant="default" 
-                                    className="w-full" 
-                                    type="submit"
-                                >
-                                    Save
-                                </Button>
+                                <div className='grid grid-flow-col gap-8'>
+                                    <Button 
+                                        variant="outline" 
+                                        className="w-full bg-green-600 text-white" 
+                                        type="submit"
+                                    >
+                                        Save
+                                    </Button>
+                                    <Button variant="destructive" className="rounded-lg">Delete</Button>
+                                </div>
                             </form>
                         </Form>
                     </div>

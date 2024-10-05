@@ -43,7 +43,7 @@ export function CardAnalytics({ className, ...props }: CardProps) {
                         key={index}
                         className="flex flex-none snap-center sm:grow items-center rounded-md space-x-4  shadow-2xl"
                     >
-                        <div className="">
+                        <div className="text-yellow-600">
                             {notification.icon}
                         </div>
                         <div className="place-items-center px-2 space-y-3">
