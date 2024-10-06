@@ -7,7 +7,7 @@ import Link from 'next/link';
 const links = [
     { 
         name: 'Profile',
-        href: '#',
+        href: '/vendor/profile',
         icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
@@ -30,11 +30,11 @@ const BottomLinks = () => {
         <>
             {links.map((link) => {
                 return (
-                    <div className='flex w-full'>
+                    <div key={link.name} className='flex w-full'>
                         <Link 
-                            key={link.name}
+                            
                             href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-green-600 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
+                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-600 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
                                 {
                                 "bg-sky-100": pathname === link.href,
                                 },

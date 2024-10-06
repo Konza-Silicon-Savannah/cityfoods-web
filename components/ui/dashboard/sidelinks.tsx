@@ -30,11 +30,10 @@ const SideBottomLinks = () => {
         <>
             {links.map((link) => {
                 return (
-                    <div className='flex w-full'>
+                    <div key={link.name} className='flex w-full'>
                         <Link 
-                            key={link.name}
                             href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
+                            className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
                                 {
                                 "bg-sky-100": pathname === link.href,
                                 },

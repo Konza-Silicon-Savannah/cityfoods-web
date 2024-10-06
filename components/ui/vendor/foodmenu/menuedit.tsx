@@ -100,7 +100,7 @@ export default function FoodEdit() {
         <div className=''>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="outline" className='rounded-full'>edit</Button>
+                    <Button variant="outline" className='rounded-full' size="sm">edit</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>

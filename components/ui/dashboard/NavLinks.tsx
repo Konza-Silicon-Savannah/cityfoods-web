@@ -1,12 +1,7 @@
 "use client"
 
-import React from 'react';
-import clsx from 'clsx';
 import Link from 'next/link';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import HomeIcon from '@mui/icons-material/Home';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+import React from 'react';
 
 //Map of links to display in the side navigation.
 const links = [
@@ -60,20 +55,21 @@ const NavLinks = () => {
         <>
             {links.map((link) => {
                 return (
-                    <Link 
-                        key={link.name}
-                        href={link.href}
-                        className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
-                            {
-                            "bg-sky-100": pathname === link.href,
-                            },
-                        )}'
-                    >
-                        <div className='flex space-x-2 items-center'>
-                            {link.icon}
-                            <p className='hidden md:block'>{link.name}</p>
-                        </div>
-                    </Link>
+                    <div key={link.name} className='flex w-full'>
+                        <Link 
+                            href={link.href}
+                            className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
+                                {
+                                "bg-sky-100": pathname === link.href,
+                                },
+                            )}'
+                        >
+                            <div className='flex space-x-2 items-center'>
+                                {link.icon}
+                                <p className='hidden md:block'>{link.name}</p>
+                            </div>
+                        </Link>
+                    </div>
                 );
             })}
         </>
