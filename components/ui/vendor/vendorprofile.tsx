@@ -17,7 +17,7 @@ const UserProfile = () => {
         <CardContent className="pt-6">
           <div className="flex flex-col items-start mb-6">
             <Avatar className="w-24 h-24 mb-4">
-              <AvatarImage src="/path-to-image.jpg" alt="Profile" />
+              <AvatarImage src="/images/home/avatar.png" alt="Profile" />
               <AvatarFallback>MF</AvatarFallback>
             </Avatar>
           </div>

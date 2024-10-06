@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Tw Cen MT';
+  src: url('/fonts/Tw Cen MT.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Tw Cen MT', sans-serif;
 }
 
 @layer utilities {
@@ -68,11 +75,3 @@ body {
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
