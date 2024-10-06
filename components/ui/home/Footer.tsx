@@ -4,7 +4,7 @@ import { Facebook, Instagram, Twitter, LinkedIn } from '@mui/icons-material';
 
 const Footer = () => {
   return (
-    <Box component="footer" sx={{ bgcolor: 'black', color: 'white', py: 8 }}>
+    <Box component="footer" sx={{ bgcolor: 'black', color: 'white', fontFamily:'Tw Cen MT', py: 8}}>
       <Container maxWidth="lg">
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(1, 1fr)', md: 'repeat(5, 1fr)' }, gap: 4 }}>
           {/* Logo and Tagline */}

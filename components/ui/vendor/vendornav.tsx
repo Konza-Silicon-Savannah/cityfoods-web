@@ -8,6 +8,14 @@ import { SheetButton } from './SheetButton'
 const VendorNav = () => {
   return (
     <>
+      <div className="flex items-center lg:flex-1 justify-between md:hidden p-2 ">
+        <a href="/" className="-m-1.5 p-1.5 font-bold text-lg text-black">
+            City <span className="text-green-500">Foods</span>
+        </a>
+        <div className='justify-end '>
+          <SheetButton/>
+        </div>
+      </div>
       <div className='hidden md:grid h-screen justify-between py-4 md:px-2'>
         <div className=''>
           <div className='flex justify-items-center'>
@@ -31,9 +39,7 @@ const VendorNav = () => {
           <BottomLinks />
         </div>
       </div>
-      <div className='block md:hidden justify-end '>
-        <SheetButton/>
-      </div>
+      
     </>
   )
 }

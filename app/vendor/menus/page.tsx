@@ -4,9 +4,9 @@ import FoodAdd from '@/components/ui/vendor/foodmenu/menuadd';
 
 const MenusPage = () => {
   return (
-    <div className='py-6 px-10 border'>
-        <div>
-          <h1>Hello, Angie.</h1>
+    <div className='py-6 px-2 md:px-10 md:border'>
+        <div className='mb-4'>
+          <h1>Hello, Doe.</h1>
           <p className='font-extrabold text-2xl'>Discover your menus and add more.</p>
         </div>
         <div className='text-right'>

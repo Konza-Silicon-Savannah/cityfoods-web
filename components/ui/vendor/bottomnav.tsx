@@ -40,9 +40,9 @@ const BottomLinks = () => {
                                 },
                             )}'
                         >
-                            <div className='flex space-x-2 items-center'>
+                            <div className='flex space-x-4 items-center'>
                                 {link.icon}
-                                <p className='hidden md:block'>{link.name}</p>
+                                <p className='p-2'>{link.name}</p>
                             </div>
                         </Link>
                     </div>

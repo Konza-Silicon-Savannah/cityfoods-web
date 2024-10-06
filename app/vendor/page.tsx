@@ -46,7 +46,7 @@ export default async function Page() {
     const data = await getData()
    
     return (
-      <div className="h-screen py-6 px-10 border">
+      <div className="h-screen md:py-6 md:px-10 md:border">
         <CardAnalytics />
         <DataTable columns={columns} data={data} />
       </div>

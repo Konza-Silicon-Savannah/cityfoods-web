@@ -7,11 +7,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from "next/link"
-import VendorLinks from './vendorlinks'
-import BottomLinks from './bottomnav'
+import NavLinks from "./NavLinks"
+import SideBottomLinks from "./sidelinks"
 import { Separator } from "@/components/ui/separator"
 
-export function SheetButton() {
+export function SheetMenu() {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -36,12 +36,12 @@ export function SheetButton() {
                 </Link>
             </div>
             <div className="flex flex-col items-start">
-                <VendorLinks />
+                <NavLinks />
             </div>
           </div>
           <Separator/>
           <div className="flex flex-col items-start justify-end">
-            <BottomLinks />
+            <SideBottomLinks />
           </div>
         </div>
         <SheetFooter>

@@ -2,17 +2,13 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { MoreHorizontal } from "lucide-react"
  
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { SheetButton } from "@/components/ui/vendor/SheetButton";
+} from "@/components/ui/popover";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -68,7 +64,7 @@ export const columns: ColumnDef<Payment>[] = [
     {
         id: "actions",
         header: () => <div className="">Action</div>,
-        cell: ({ row }) => {
+        cell: () => {
         //   const payment = row.original
      
           return (

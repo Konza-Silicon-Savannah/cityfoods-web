@@ -5,7 +5,7 @@ import Cart from './cart';
 
 const Header = () => {
   return (
-    <header className="w-full container flex justify-between items-center py-4 px-6">
+    <header className="w-full md:container flex justify-between items-center py-4 md:px-6">
         <div className="flex items-center border-b border-gray-300">
           <SearchIcon className="text-gray-500" />
           <input
@@ -14,7 +14,7 @@ const Header = () => {
             className="ml-2 p-1 outline-none bg-transparent"
           />
         </div>
-        <div className="justify-between items-center hidden sm:flex">
+        <div className="justify-between items-center flex">
             {/* <p className="font-extrabold font-sm px-4">Welcome</p> */}
             <Cart />
             <div className="relative w-6 h-6 bg-white-500 border rounded-full overflow-hidden ">

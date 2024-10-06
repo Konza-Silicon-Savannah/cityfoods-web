@@ -1,65 +1,117 @@
 import React from 'react'
 import Image from 'next/image'
+import {
+    Card,
+    CardContent, CardFooter
+  } from "@/components/ui/card"
 
 const Categories = () => {
   return (
-    <section className="rounded-lg container w-full mt-4 mb-4">
+    <section className="rounded-lg container mx-auto mt-4 mb-4">
         <div className="p-6">
             <p className="font-semibold text-gray-800 capitalize  dark:text-white">Popular Categories</p>
-            <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-10 md:grid-cols-2 xl:grid-cols-5">
-                <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
-                    <Image 
-                        className="object-cover rounded-full " 
-                        src="/images/home/image copy.png" 
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                    <p className="mt-4 font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Meat</p>
-                </div>
-
-                <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
-                    <Image 
-                        className="object-cover rounded-full " 
-                        src="/images/home/image copy.png" 
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                    <p className="mt-4 font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Vegetables</p>
-                </div>
-
-                <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
-                    <Image 
-                        className="object-cover rounded-full " 
-                        src="/images/home/image copy.png" 
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                    <p className="mt-4 font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Chicken</p>
-                </div>
-
-                <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
-                    <Image 
-                        className="object-cover rounded-full " 
-                        src="/images/home/image copy.png" 
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                    <p className="mt-4 font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Fruits</p>
-                </div>
-                <div className="flex flex-col items-center p-4 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
-                    <Image 
-                        className="object-cover rounded-full " 
-                        src="/images/home/image copy.png" 
-                        alt=""
-                        width={100}
-                        height={100}
-                    />
-                    <p className="mt-4 font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">Salad</p>
-                </div>
+            <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-10 md:grid-cols-5">
+                <Card className='grid grid-flow-row'>
+                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+                        <div className="rounded-full w-full">
+                            <Image
+                            src='/images/fishmealhero.png'
+                            alt="fooditem"
+                            className="object-cover h-32 w-full rounded-lg"
+                            height={32}
+                            width={100}
+                            />
+                        </div>
+                        
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                        <div className="px-2">
+                            <h1 className="font-bold">Main course</h1>
+                        </div>
+                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                    </CardFooter>
+                </Card>
+                <Card className='grid grid-flow-row'>
+                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+                        <div className="rounded-full w-full">
+                            <Image
+                            src='/images/fishmealhero.png'
+                            alt="fooditem"
+                            className="object-cover h-32 w-full rounded-lg"
+                            height={32}
+                            width={100}
+                            />
+                        </div>
+                        
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                        <div className="px-2">
+                            <h1 className="font-bold">Some</h1>
+                        </div>
+                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                    </CardFooter>
+                </Card>
+                <Card className='grid grid-flow-row'>
+                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+                        <div className="rounded-full w-full">
+                            <Image
+                            src='/images/fishmealhero.png'
+                            alt="fooditem"
+                            className="object-cover h-32 w-full rounded-lg"
+                            height={32}
+                            width={100}
+                            />
+                        </div>
+                        
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                        <div className="px-2">
+                            <h1 className="font-bold">Side Dish</h1>
+                        </div>
+                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                    </CardFooter>
+                </Card>
+                <Card className='grid grid-flow-row'>
+                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+                        <div className="rounded-full w-full">
+                            <Image
+                            src='/images/fishmealhero.png'
+                            alt="fooditem"
+                            className="object-cover h-32 w-full rounded-lg"
+                            height={32}
+                            width={100}
+                            />
+                        </div>
+                        
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                        <div className="px-2">
+                            <h1 className="font-bold">Soft Drinks</h1>
+                        </div>
+                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                    </CardFooter>
+                </Card>
+                <Card className='grid grid-flow-row'>
+                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
+                        <div className="rounded-full w-full">
+                            <Image
+                            src='/images/fishmealhero.png'
+                            alt="fooditem"
+                            className="object-cover h-32 w-full rounded-lg"
+                            height={32}
+                            width={100}
+                            />
+                        </div>
+                        
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                        <div className="px-2">
+                            <h1 className="font-bold">Desert</h1>
+                        </div>
+                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">3.9</span></p>
+                    </CardFooter>
+                </Card>
+                
             </div>
         </div>
     </section>

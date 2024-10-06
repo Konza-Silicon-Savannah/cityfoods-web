@@ -64,9 +64,9 @@ const NavLinks = () => {
                                 },
                             )}'
                         >
-                            <div className='flex space-x-2 items-center'>
+                            <div className='flex space-x-4 md:space-x-2 items-center'>
                                 {link.icon}
-                                <p className='hidden md:block'>{link.name}</p>
+                                <p className='block p-2'>{link.name}</p>
                             </div>
                         </Link>
                     </div>

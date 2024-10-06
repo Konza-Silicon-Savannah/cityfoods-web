@@ -1,13 +1,16 @@
+import Image from 'next/image'
 import React from 'react'
 
 const FoodItem = () => {
   return (
     <div className="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
         <div className="flex items-center p-4">
-            <img 
-            src="/path-to-image.jpg" 
-            alt="Dish Image" 
-            className="w-16 h-16 rounded-full object-cover" 
+            <Image
+                src="/images/fishmealhero.png" 
+                alt="Dish Image" 
+                className="w-32 h-16 rounded-full object-cover"
+                width={100} 
+                height={100}
             />
             <div className="ml-4">
             <h4 className="text-sm text-gray-400">Callitos</h4> {/* Restaurant or description */}

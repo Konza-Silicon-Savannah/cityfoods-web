@@ -12,7 +12,7 @@ import {
 
 interface User {
   name: string;
-  role: string;
+  issue: string;
   time: string;
 }
 
@@ -23,13 +23,13 @@ interface MessageListProps {
 
 const MessageList: React.FC<MessageListProps> = ({ onSelectMessage, selectedUser }) => {
   const users: User[] = [
-    { name: 'Julian H.', role: 'Order not received', time: '2h ago' },
-    { name: 'Ramona J.', role: 'Order not received', time: '12h ago' },
-    { name: 'Dominik W.', role: 'Order not received', time: '2 days ago' },
-    { name: 'Kevin M.', role: 'Order not received...', time: '2 days ago' },
-    { name: 'Ramona J.', role: 'Order not received', time: '1 week ago' },
-    { name: 'Dominik W.', role: 'Order not received', time: '08.03.20' },
-    { name: 'Kevin M.', role: 'Order not received', time: '06.03.20' },
+    { name: 'Julian A.', issue: 'Order not received', time: '2h ago' },
+    { name: 'Ramona J.', issue: 'Order not received', time: '12h ago' },
+    { name: 'Dominik W.', issue: 'Order not received', time: '2 days ago' },
+    { name: 'Stewie Grifin.', issue: 'Order not received...', time: '2 days ago' },
+    { name: 'Brian Grifin', issue: 'Order not received', time: '1 week ago' },
+    { name: 'Quagmire.', issue: 'Order not received', time: '08.03.20' },
+    { name: 'Kevin M.', issue: 'Order not received', time: '06.03.20' },
   ];
 
   return (
@@ -37,7 +37,7 @@ const MessageList: React.FC<MessageListProps> = ({ onSelectMessage, selectedUser
       {users.map((user, index) => (
         <div 
           key={index} 
-          className={`flex items-start space-x-4 py-4 px-6 hover:bg-gray-50 cursor-pointer ${selectedUser === user.name ? 'bg-gray-50' : ''}`}
+          className={`flex items-start space-x-4 py-4 px-6 hover:bg-green-200 hover:text-white cursor-pointer ${selectedUser === user.name ? 'bg-gray-50' : ''}`}
           onClick={() => onSelectMessage(user.name)}
         >
           <Avatar className="w-10 h-10">
@@ -49,7 +49,7 @@ const MessageList: React.FC<MessageListProps> = ({ onSelectMessage, selectedUser
               <p className="font-semibold">{user.name}</p>
               <span className="text-xs text-gray-500">{user.time}</span>
             </div>
-            <p className="text-sm text-gray-500 truncate">{user.role}</p>
+            <p className="text-sm text-gray-500 truncate">{user.issue}</p>
           </div>
           {index === 0 && <div className="w-2 h-2 bg-blue-500 rounded-full"></div>}
         </div>
@@ -87,12 +87,12 @@ interface ChatMessagesProps {
 }
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({ user }) => (
-  <ScrollArea className="container flex p-4">
+  <ScrollArea className="flex p-4">
     <div className="space-y-4">
       <div className="flex justify-center">
         <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">09.03.20</span>
       </div>
-      <div className="bg-blue-50 rounded-lg p-4 max-w-[70%]">
+      <div className="bg-blue-50 rounded-b-lg p-4 max-w-[80%]">
         <p className="font-semibold mb-1">{user}</p>
         <p className="text-sm">Hi Lena, I have not received my order .</p>
         <p className="text-sm mt-2">How long does it usually take for you to review an order?</p>
@@ -101,11 +101,11 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ user }) => (
       <div className="flex justify-center">
         <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Today</span>
       </div>
-      <div className="bg-white rounded-lg p-4 max-w-[70%] ml-auto">
-        <p className="text-sm">Hi Julian,<br />sorry for the delayed response </p>
+      <div className="bg-green-400 text-white rounded-t-lg p-4 max-w-[80%] ml-auto">
+        <p className="text-sm">Hi,<br />sorry for the delayed response </p>
         <p className="text-sm mt-2">We will initiate a refund. The timeframe is a normal working day (~ 8 hours).</p>
         <p className="text-sm mt-2">If you have any questions feel free to message me here.</p>
-        <p className="text-xs text-gray-500 mt-2">Message sent just now</p>
+        <p className="text-xs text-slate-900 mt-2">Message sent just now</p>
       </div>
     </div>
   </ScrollArea>
@@ -142,7 +142,7 @@ const MessagingInterface: React.FC = () => {
     <div className="container flex h-screen bg-white">
       <div className={`w-full md:w-1/3 border-r ${isMobileViewingMessages ? 'hidden md:block' : 'grid'}`}>
         <div className="p-4 border-b">
-          <h1 className="text-xl font-bold mb-4">Messages <span className="text-sm font-normal text-gray-500">25</span></h1>
+          <h1 className="text-xl font-bold mb-4">Messages <span className="text-sm font-normal text-gray-500">7</span></h1>
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input placeholder="Search" className="pl-10" />

@@ -262,7 +262,6 @@ export function TabsMenu() {
                   <FoodEdit/>
             </CardFooter>
           </Card>
-
         </div>
       </TabsContent>
       <TabsContent value="drinks">
