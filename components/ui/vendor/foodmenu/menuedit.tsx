@@ -23,7 +23,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
     Dialog,
     DialogContent,
@@ -34,7 +33,6 @@ import {
   } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Switch } from "@/components/ui/switch";
 import { Combobox } from './multiselect';
 
 const formSchema = z.object({

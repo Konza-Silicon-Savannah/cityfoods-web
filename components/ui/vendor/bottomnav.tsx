@@ -34,7 +34,7 @@ const BottomLinks = () => {
                         <Link 
                             
                             href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-600 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
+                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-600 hover:text-slate-100 md:flex-none md:justify-start px-4 md:px-4",
                                 {
                                 "bg-sky-100": pathname === link.href,
                                 },

@@ -58,13 +58,13 @@ const VendorLinks = () => {
                         <Link 
                             
                             href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start md:py-2 px-4 md:px-4",
+                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start px-4 md:px-4",
                                 {
                                 "bg-sky-100": pathname === link.href,
                                 },
                             )}'
                         >
-                            <div className='flex space-x-4  items-center'>
+                            <div className='flex space-x-4 items-center'>
                                 {link.icon}
                                 <p className='block p-2'>{link.name}</p>
                             </div>

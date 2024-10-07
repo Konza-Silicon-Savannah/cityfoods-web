@@ -4,12 +4,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
  
 import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover";
+import { OrderSheet } from "@/components/ui/vendor/ordersheet";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
@@ -68,29 +68,32 @@ export const columns: ColumnDef<Payment>[] = [
         //   const payment = row.original
      
           return (
-            <Popover>
-                <PopoverTrigger asChild>
-                    <Button variant="outline">View</Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-50">
-                    <div className="grid gap-4">
-                        <div className="space-y-2">
-                            <p className="text-sm text-muted-foreground">
-                                Accept or Reject Order.
-                            </p>
-                        </div>
-                        <div className="grid grid-flow-col gap-2">
-                            <div className="">
-                                <Button variant="outline" className="">Accept</Button>
-                            </div>
-                            <div className="">
-                                <Button variant="destructive">Decline</Button>
-                            </div>
+            // <Popover>
+            //     <PopoverTrigger asChild>
+            //         <Button variant="outline">View</Button>
+            //     </PopoverTrigger>
+            //     <PopoverContent className="w-50">
+            //         <div className="grid gap-4">
+            //             <div className="space-y-2">
+            //                 <p className="text-sm text-muted-foreground">
+            //                     Accept or Reject Order.
+            //                 </p>
+            //             </div>
+            //             <div className="grid grid-flow-col gap-2">
+            //                 <div className="">
+            //                     <Button variant="outline" className="">Accept</Button>
+            //                 </div>
+            //                 <div className="">
+            //                     <Button variant="destructive">Decline</Button>
+            //                 </div>
                             
-                        </div>
-                    </div>
-                </PopoverContent>
-            </Popover>
+            //             </div>
+            //         </div>
+            //     </PopoverContent>
+            // </Popover>
+            <>
+              <OrderSheet/>
+            </>
           )
         },
       },
