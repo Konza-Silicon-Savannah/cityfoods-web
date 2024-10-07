@@ -5,9 +5,9 @@ import Cart from './cart';
 
 const Header = () => {
   return (
-    <header className="w-full md:container flex justify-between items-center py-4 md:px-6">
+    <header className="w-full md:container flex justify-between items-center py-4 px-4">
         <div className="flex items-center border-b border-gray-300">
-          <SearchIcon className="text-gray-500" />
+          <SearchIcon className="text-black" />
           <input
             type="text"
             placeholder="Search for food, and more"
@@ -17,7 +17,7 @@ const Header = () => {
         <div className="justify-between items-center flex">
             {/* <p className="font-extrabold font-sm px-4">Welcome</p> */}
             <Cart />
-            <div className="relative w-6 h-6 bg-white-500 border rounded-full overflow-hidden ">
+            <div className="relative w-8 h-8 border-2 border-green-700 rounded-full overflow-hidden">
                 <Image
                     alt="nice dish of food"
                     src="/images/home/avatar.png"

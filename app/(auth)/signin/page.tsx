@@ -4,9 +4,9 @@ import { UserLoginForm } from '@/components/ui/siginin';
 
 const SignInPage = () => {
   return (
-    <>
+    <div className='grid w-2/3 border p-4 rounded-2xl'>
         <UserLoginForm />
-    </>
+    </div>
   )
 };
 

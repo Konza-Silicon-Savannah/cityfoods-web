@@ -10,7 +10,7 @@ import { SheetMenu } from './sheetmenu'
 const SideNav = () => {
   return (
     <>
-      <div className='hidden md:h-full md:grid md:justify-between md:py-4 md:px-2'>
+      <div className='hidden md:h-full md:grid md:justify-between md:py-4 md:px-2 bg-black text-white'>
         <div>
           <div className='flex justify-items-center'>
               <Link
@@ -24,7 +24,6 @@ const SideNav = () => {
               </Link>
             </div>
             <div className="flex flex-col items-start ">
-                <Separator/>
                 <NavLinks />
             </div>
         </div>

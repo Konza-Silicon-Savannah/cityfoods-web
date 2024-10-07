@@ -20,7 +20,7 @@ const Hero = () => {
                     <h2 className="text-4xl font-bold md:text-7xl text-green-700">Where taste <br />meets the myth</h2>
 
                     <p className="mt-4 text-gray-600 text-sm  md:text-2xl">
-                    Satisfy your cravings with fast <br />and convenient food delivery <br />service.
+                        Satisfy your cravings with fast <br />and convenient food delivery <br />service.
                     </p>
 
                     <div>

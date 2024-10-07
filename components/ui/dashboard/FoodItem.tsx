@@ -1,32 +1,33 @@
 import Image from 'next/image'
 import React from 'react'
+import { Button } from "@/components/ui/button";
 
 const FoodItem = () => {
   return (
-    <div className="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-        <div className="flex items-center p-4">
+    <div className="max-w-sm bg-white rounded-xl shadow-lg">
+        <div className="grid md:flex items-center w-[220px] md:w-full">
             <Image
                 src="/images/fishmealhero.png" 
                 alt="Dish Image" 
-                className="w-32 h-16 rounded-full object-cover"
+                className="w-full h-18 md:h-24 md:w-24 md:rounded-full "
                 width={100} 
                 height={100}
             />
-            <div className="ml-4">
-            <h4 className="text-sm text-gray-400">Callitos</h4> {/* Restaurant or description */}
-            <h2 className="font-semibold text-lg">Main Course</h2> {/* Food name */}
-            <div className="flex items-center text-sm text-green-500 space-x-1">
-                <span className="flex items-center space-x-1">
-                    <span>4.5</span>
-                </span>
-                <span className="text-gold-600">★</span> {/* Star symbol */}
-            </div>
+            <div className="md:ml-4 px-2">
+                <h4 className="text-sm text-gray-400">Callitos</h4> {/* Restaurant or description */}
+                <h2 className="font-semibold text-sm md:text-lg">Main Course</h2> {/* Food name */}
+                <div className="flex items-center text-sm text-green-500 space-x-1">
+                    <span className="flex items-center space-x-1">
+                        <span>4.5</span>
+                    </span>
+                    <span className="text-gold-600">★</span> {/* Star symbol */}
+                </div>
             </div>
         </div>
 
-        <div className="flex items-center justify-between px-4 py-2">
-            <p className="text-lg font-semibold text-green-600">Kes 450</p> {/* Price */}
-            <button className="bg-green-500 hover:bg-green-600 text-white rounded-full p-2 transition-colors duration-300">
+        <div className="flex items-center justify-between px-2 md:px-4">
+            <p className="text-sm md:text-lg font-semibold text-green-600">Kes 450</p> {/* Price */}
+            <Button className="bg-black hover:bg-green-600 text-white rounded-full p-2 mb-2 transition-colors duration-300">
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     className="h-5 w-5" 
@@ -41,7 +42,7 @@ const FoodItem = () => {
                     d="M12 4v16m8-8H4" 
                     />
                 </svg>
-            </button>
+            </Button>
         </div>
     </div>
 

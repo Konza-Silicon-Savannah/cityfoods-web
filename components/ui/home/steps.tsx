@@ -10,7 +10,7 @@ const Steps = () => {
                 In four simple steps.
             </p>
             <div className="grid grid-cols-1 gap-12 mt-8 xl:mt-4 md:grid-cols-2 xl:grid-cols-4">
-                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group bg-gradient-to-r from-yellow-500 via-yellow-500 to-green-500 dark:border-gray-700 dark:hover:border-transparent">
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer rounded-xl hover:border-transparent group bg-gradient-to-r from-yellow-500 via-yellow-500 to-green-500 dark:border-gray-700 dark:hover:border-transparent">
                     <Image 
                         className="object-cover rounded" 
                         src="/icons/store.gif" 
@@ -22,7 +22,7 @@ const Steps = () => {
                     <p className="mt-4  capitalize dark:text-white text-white">Select a Vendor</p>
                 </div>
 
-                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform  cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
                     <Image 
                         className="object-cover rounded" 
                         src="/icons/menu.gif" 
@@ -34,7 +34,7 @@ const Steps = () => {
                     <p className="mt-4  capitalize dark:text-white group-hover:text-white">Select Menu</p>
                 </div>
 
-                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
                     <Image 
                         className="object-cover rounded" 
                         src="/icons/checkout.gif" 
@@ -46,7 +46,7 @@ const Steps = () => {
                     <p className="mt-4 capitalize dark:text-white group-hover:text-white">Checkout Order</p>
                 </div>
 
-                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
+                <div className="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer rounded-xl hover:border-transparent group hover:bg-yellow-400 dark:border-gray-700 dark:hover:border-transparent">
                     <Image 
                         className="object-cover rounded" 
                         src="/icons/food-delivery.gif" 

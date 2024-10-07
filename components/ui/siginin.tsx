@@ -96,12 +96,12 @@ export function UserLoginForm() {
             </form>
             {/* signup instead link */}
             <div className="mt-4">
-            <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
-                <Link href="/signup" className="text-blue-600 hover:underline">
-                    Sign Up
-                </Link>
-            </p>
+                <p className="text-sm text-gray-600">
+                    Don&apos;t have an account?{' '}
+                    <Link href="/signup" className="text-blue-600 hover:underline">
+                        Sign Up
+                    </Link>
+                </p>
             </div>
         </Form>
     )

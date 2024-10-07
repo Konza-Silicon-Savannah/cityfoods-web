@@ -75,7 +75,7 @@ export function DataTable<TData, TValue>({
                     onChange={(event) =>
                         table.getColumn("customer")?.setFilterValue(event.target.value)
                     }
-                    className="w-sm"
+                    className="w-sm md:w-[400px]"
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

@@ -7,108 +7,108 @@ import {
 
 const Categories = () => {
   return (
-    <section className="rounded-lg container mx-auto mt-4 mb-4">
+    <section className="container mx-auto mt-4 mb-4">
         <div className="p-6">
-            <p className="font-semibold text-gray-800 capitalize  dark:text-white">Popular Categories</p>
-            <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-10 md:grid-cols-5">
-                <Card className='grid grid-flow-row'>
-                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
-                        <div className="rounded-full w-full">
+            <p className="font-semibold text-gray-800 capitalize">popular categories</p>
+            <div className="md:grid gap-4 md:gap-16 mt-6 xl:mt-10 md:grid-cols-5 overflow-x-auto md:overflow-x-none flex sm:space-x-4">
+                <Card className='grid grid-flow-row border-none shadow-none'>
+                    <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                        <div className="rounded-full w-full md:w-24">
                             <Image
                             src='/images/fishmealhero.png'
                             alt="fooditem"
-                            className="object-cover h-32 w-full rounded-lg"
-                            height={32}
+                            className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
+                            height={24}
                             width={100}
                             />
                         </div>
                         
                     </CardContent>
-                    <CardFooter className="justify-between">
-                        <div className="px-2">
-                            <h1 className="font-bold">Main course</h1>
+                    <CardFooter className="grid justify-center">
+                        <div className="md:px-2">
+                            <h1 className="font-bold">Breakfast</h1>
                         </div>
-                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                        <p className="font-extralight md:px-2 text-sm">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
                     </CardFooter>
                 </Card>
-                <Card className='grid grid-flow-row'>
-                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
-                        <div className="rounded-full w-full">
+                <Card className='grid grid-flow-row border-none shadow-none'>
+                    <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                        <div className="rounded-full w-full md:w-24">
                             <Image
                             src='/images/fishmealhero.png'
                             alt="fooditem"
-                            className="object-cover h-32 w-full rounded-lg"
-                            height={32}
+                            className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
+                            height={24}
                             width={100}
                             />
                         </div>
                         
                     </CardContent>
-                    <CardFooter className="justify-between">
-                        <div className="px-2">
-                            <h1 className="font-bold">Some</h1>
+                    <CardFooter className="grid justify-center">
+                        <div className="md:px-2">
+                            <h1 className="font-bold">Breakfast</h1>
                         </div>
-                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                        <p className="font-extralight md:px-2 text-sm">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
                     </CardFooter>
                 </Card>
-                <Card className='grid grid-flow-row'>
-                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
-                        <div className="rounded-full w-full">
+                <Card className='grid grid-flow-row border-none shadow-none'>
+                    <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                        <div className="rounded-full w-full md:w-24">
                             <Image
                             src='/images/fishmealhero.png'
                             alt="fooditem"
-                            className="object-cover h-32 w-full rounded-lg"
-                            height={32}
+                            className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
+                            height={24}
                             width={100}
                             />
                         </div>
                         
                     </CardContent>
-                    <CardFooter className="justify-between">
-                        <div className="px-2">
-                            <h1 className="font-bold">Side Dish</h1>
+                    <CardFooter className="grid justify-center">
+                        <div className="md:px-2">
+                            <h1 className="font-bold">Breakfast</h1>
                         </div>
-                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                        <p className="font-extralight md:px-2 text-sm">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
                     </CardFooter>
                 </Card>
-                <Card className='grid grid-flow-row'>
-                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
-                        <div className="rounded-full w-full">
+                <Card className='grid grid-flow-row border-none shadow-none'>
+                    <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                        <div className="rounded-full w-full md:w-24">
                             <Image
                             src='/images/fishmealhero.png'
                             alt="fooditem"
-                            className="object-cover h-32 w-full rounded-lg"
-                            height={32}
+                            className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
+                            height={24}
                             width={100}
                             />
                         </div>
                         
                     </CardContent>
-                    <CardFooter className="justify-between">
-                        <div className="px-2">
-                            <h1 className="font-bold">Soft Drinks</h1>
+                    <CardFooter className="grid justify-center">
+                        <div className="md:px-2">
+                            <h1 className="font-bold">Breakfast</h1>
                         </div>
-                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
+                        <p className="font-extralight md:px-2 text-sm">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
                     </CardFooter>
                 </Card>
-                <Card className='grid grid-flow-row'>
-                    <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg">
-                        <div className="rounded-full w-full">
+                <Card className='grid grid-flow-row border-none shadow-none'>
+                    <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                        <div className="rounded-full w-full md:w-24">
                             <Image
                             src='/images/fishmealhero.png'
                             alt="fooditem"
-                            className="object-cover h-32 w-full rounded-lg"
-                            height={32}
+                            className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
+                            height={24}
                             width={100}
                             />
                         </div>
                         
                     </CardContent>
-                    <CardFooter className="justify-between">
-                        <div className="px-2">
-                            <h1 className="font-bold">Desert</h1>
+                    <CardFooter className="grid justify-center">
+                        <div className="md:px-2">
+                            <h1 className="font-bold">Breakfast</h1>
                         </div>
-                        <p className="font-extralight px-2">Rating <span className="text-yellow-900 font-bold">3.9</span></p>
+                        <p className="font-extralight md:px-2 text-sm">Rating <span className="text-yellow-900 font-bold">4.5</span></p>
                     </CardFooter>
                 </Card>
                 
