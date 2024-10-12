@@ -11,11 +11,14 @@ export function useAuth() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/check-auth');
+        const response = await fetch('/api/check-auth', {
+          method: 'GET',
+          credentials: 'include', // This ensures cookies are sent with the request
+        });
         
         if (response.ok) {
           const data = await response.json();
-          setIsAuthenticated(data.authenticated); // Set based on the response
+          setIsAuthenticated(data.authenticated);
         } else {
           setIsAuthenticated(false);
           router.push('/signin');
@@ -31,5 +34,23 @@ export function useAuth() {
     checkAuth();
   }, [router]);
 
-  return { isAuthenticated, isLoading };
+  const logout = async () => {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(false);
+        router.push('/signin');
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
+  return { isAuthenticated, isLoading, logout };
 }

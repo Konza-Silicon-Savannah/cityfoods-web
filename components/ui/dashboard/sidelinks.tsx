@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/hooks/use-auth';
 import { Button } from '../button';
 
 //Map of links to display in the side navigation.
@@ -29,47 +29,13 @@ const links = [
 
 const SideBottomLinks = () => {
 
-
-    const router = useRouter();
+    const { logout } = useAuth();
 
     const handleLogout = async() => {
-        try {
-            // Retrieve the token from localStorage
-            const token = localStorage.getItem('authToken');
-
-            if (!token) {
-                console.error('No authentication token found');
-                return;
-            }
-
-            const response = await fetch('http://localhost:8000/accounts/api/logout/', {
-                method: 'POST',
-                credentials: 'include', // including cookies in the request
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${token}` // Include the token in the Authorization header
-                },
-            
-            });
-
-            if (response.ok) {
-                // Clear the token from localStorage
-                localStorage.removeItem('authToken');
-                
-                // redirect to homepage after successful logout
-                router.push('/');
-            } else {
-                // Optionally, handle failed logout (show error message).
-                console.error('Logout failed');
-                // Optionally, you can check the response status and body for more details
-                const errorBody = await response.text();
-                console.error('Error details:', response.status, errorBody);
-            }
-        } catch (error) {
-            // Handle network errors here.
-            console.error('Error during logout:', error);
-        }
+        await logout();
     };
+
+    // const router = useRouter();
 
     return (
         <>
