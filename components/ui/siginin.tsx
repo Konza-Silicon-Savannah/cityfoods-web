@@ -1,13 +1,12 @@
 "use client"
 
 import React from 'react';
-// import axios from 'axios';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 import { Button } from "@/components/ui/button"
@@ -23,18 +22,13 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-    email: z.string().email(
-        "Enter a valid email"
-    ),
-    password: z.string().min(8, {
-        message:"Enter a valid password"
-    }),
+    email: z.string().email("Enter a valid email"),
+    password: z.string().min(8, { message: "Enter a valid password" }),
 })
 
-
 export function UserLoginForm() {
-    // 1. Define the form
     const [apiError, setApiError] = useState("");
+    const [isRedirecting, setIsRedirecting] = useState(false);
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,47 +37,71 @@ export function UserLoginForm() {
             password: "",  
         }
     })
-    // 2. Define a submit handler
+
+    useEffect(() => {
+        if (isRedirecting) {
+            console.log("Attempting to redirect...");
+            router.push('/dashboard/home');
+        }
+    }, [isRedirecting, router]);
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        //Do something with the form values
-        // This will be typesafe and validated
         setApiError("");
         try {
-            const response = await fetch('http://localhost:8000/accounts/api/login/', {
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     email: values.email,
                     password: values.password,
                 }),
             });
             const data = await response.json();
+            console.log('Login response:', data);
+            
+            if (data.success) {
+                const token = data.token;
+                // Store token in cookies
+                document.cookie = `authToken=${token}; path=/; samesite=strict;`; //you might not want to set secure to true, as this would require HTTPS
+                console.log('Token stored:', token);
+                // Redirect or update state as needed
+            }
+
             if (!response.ok) {
-                //Handle specific error messages from the backend
-                if (data.email) {
-                    setApiError(data.email[0]);
-                } else if (data.password) {
-                    setApiError(data.password[0])
-                } else if (data.non_field_errors) {
-                    setApiError(data.non_field_errors[0]);
+                if (data.message) {
+                    setApiError(data.message);
+                } else if (data.error) {
+                    setApiError(data.error);
                 } else {
                     setApiError("Login failed. Please try again.");
                 }
-                throw new Error('Login failed');
+                return;
             }
-            console.log('Login successfull', data);
-            // handle successful login (e.g., redirect, update state, exitCode.)
-            //redirect to dashboard after successful login
-            router.push('/dashboard/home');
+
+            if (!data.token) {
+                console.error('No token received from server');
+                setApiError('Authentication failed: No token received');
+                return;
+            }
+
+            // Store the token in localStorage (or sessionStorage, depending on your needs)
+            localStorage.setItem('authToken', data.token);  // Save the auth token
+            console.log('Token stored:', data.token);
+            console.log('Token received:', data.token.substring(0, 10) + '...');
+
+            // Check if cookies are set
+            console.log('Cookies:', document.cookie);
+
+            console.log('Login successful, preparing to redirect...');
+            setIsRedirecting(true);
         } catch (error) {
-            console.error('Log in error', error);
-            // handle login error
-            setApiError("Invalid credentials. Please try again.");
+            console.error('Login error:', error);
+            setApiError("An unexpected error occurred. Please try again.");
         }
     }
-
 
     return (
         <Form {...form}>
@@ -106,7 +124,7 @@ export function UserLoginForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="Email@domain.com" {...field}/>
+                                <Input type="email" placeholder="Email@domain.com" {...field}/>
                             </FormControl>
                             <FormDescription>
                                 Enter your email address.
@@ -127,20 +145,17 @@ export function UserLoginForm() {
                                 </div>
                             </div>
                             <FormControl>
-                                <Input placeholder="*************" {...field}/>
+                                <Input type="password" placeholder="*************" {...field}/>
                             </FormControl>
                             <FormDescription>
                                 Enter your password.
                             </FormDescription>
                             <FormMessage/>
-                            
                         </FormItem>
-
                     )}                   
                 />
                 <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">Submit</Button>
             </form>
-            {/* signup instead link */}
             <div className="mt-4">
                 <p className="text-sm text-gray-600">
                     Don&apos;t have an account?{' '}

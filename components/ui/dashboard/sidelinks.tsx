@@ -28,6 +28,8 @@ const links = [
 ];
 
 const SideBottomLinks = () => {
+
+
     const router = useRouter();
 
     const handleLogout = async() => {
@@ -41,12 +43,12 @@ const SideBottomLinks = () => {
                 // redirect to homepage after successful logout
                 router.push('http://localhost:3000');
             } else {
-                console.error('Logout failed');
                 //optionally,handle failed logout (show error message).
+                console.error('Logout failed');
             }
         } catch (error) {
-            console.error('Error during logout:', error);
             // Handle network errors here.
+            console.error('Error during logout:', error);
         }
     };
 
@@ -92,4 +94,3 @@ const SideBottomLinks = () => {
 }
 
 export default SideBottomLinks
-
