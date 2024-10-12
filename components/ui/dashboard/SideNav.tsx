@@ -32,7 +32,7 @@ const SideNav = () => {
           <SideBottomLinks />
         </div>
       </div>
-      <div className='flex justify-end'>
+      <div className='md:hidden flex justify-end'>
         <SheetMenu />
       </div>
     </>

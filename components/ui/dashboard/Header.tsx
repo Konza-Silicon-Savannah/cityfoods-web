@@ -6,12 +6,12 @@ import Cart from './cart';
 const Header = () => {
   return (
     <header className="w-full md:container flex justify-between items-center py-4 px-4">
-        <div className="flex items-center border-b border-gray-300">
+        <div className="flex items-center border-b border-black mx-2">
           <SearchIcon className="text-black" />
           <input
             type="text"
             placeholder="Search for food, and more"
-            className="ml-2 p-1 outline-none bg-transparent"
+            className="ml-4 p-1  bg-transparent"
           />
         </div>
         <div className="justify-between items-center flex">

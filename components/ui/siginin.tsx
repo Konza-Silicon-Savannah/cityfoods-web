@@ -1,9 +1,14 @@
 "use client"
 
+import React from 'react';
+// import axios from 'axios';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from "next/link"
+import { useRouter } from 'next/navigation'
+import { useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,9 +23,9 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-    email: z.string().min(2, {
-        message:"Enter a valid email"
-    }),
+    email: z.string().email(
+        "Enter a valid email"
+    ),
     password: z.string().min(8, {
         message:"Enter a valid password"
     }),
@@ -29,6 +34,8 @@ const formSchema = z.object({
 
 export function UserLoginForm() {
     // 1. Define the form
+    const [apiError, setApiError] = useState("");
+    const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -37,10 +44,44 @@ export function UserLoginForm() {
         }
     })
     // 2. Define a submit handler
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         //Do something with the form values
         // This will be typesafe and validated
-        console.log(values)
+        setApiError("");
+        try {
+            const response = await fetch('http://localhost:8000/accounts/api/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: values.email,
+                    password: values.password,
+                }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                //Handle specific error messages from the backend
+                if (data.email) {
+                    setApiError(data.email[0]);
+                } else if (data.password) {
+                    setApiError(data.password[0])
+                } else if (data.non_field_errors) {
+                    setApiError(data.non_field_errors[0]);
+                } else {
+                    setApiError("Login failed. Please try again.");
+                }
+                throw new Error('Login failed');
+            }
+            console.log('Login successfull', data);
+            // handle successful login (e.g., redirect, update state, exitCode.)
+            //redirect to dashboard after successful login
+            router.push('/dashboard/home');
+        } catch (error) {
+            console.error('Log in error', error);
+            // handle login error
+            setApiError("Invalid credentials. Please try again.");
+        }
     }
 
 
@@ -53,6 +94,11 @@ export function UserLoginForm() {
               <h2 className="mt-2 text-lg text-gray-700">Welcome back 👋</h2>
             </div>
             <form onSubmit={form.handleSubmit(onSubmit)}>
+                {apiError && (
+                    <Alert variant="destructive" className="mt-4">
+                        <AlertDescription>{apiError}</AlertDescription>
+                    </Alert>
+                )}
                 <FormField
                     control={form.control} 
                     name="email"

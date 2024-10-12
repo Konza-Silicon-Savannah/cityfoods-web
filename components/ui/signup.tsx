@@ -1,12 +1,13 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import Link from "next/link"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from 'next/navigation'
 
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -17,9 +18,10 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const formSchema = z.object({
-    fullname: z.string().min(2, {
+    name: z.string().min(2, {
         message: "Username must be at least 2 characters.",
     }),
     email: z.string().min(2, {
@@ -28,24 +30,74 @@ const formSchema = z.object({
     password: z.string().min(8, {
         message:"Password must be atleast 8 characters"
     }),
-})
+    password2: z.string().min(8, {
+        message:"Password must be the same as the above"
+    }),
+}).refine((data) => data.password === data.password2, {
+    message: "Passwords don't match",
+    path:["password2"],
+});
 
 
 export function UserSignupForm() {
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [apiError, setApiError] = useState("");
     // 1. Define the form
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullname: "",
+            name: "",
             email: "",
-            password: "",  
+            password: "",
+            password2: "",  
         }
     })
     // 2. Define a submit handler
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         //Do something with the form values
         // This will be typesafe and validated
-        console.log(values)
+        setIsLoading(true);
+        setApiError("");
+        try {
+            const response = await fetch('http://localhost:8000/accounts/api/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: values.email,
+                    name: values.name,
+                    password: values.password,
+                    password2: values.password2
+                }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                //Handle specific error messages from the backend
+                if (data.email) {
+                    setApiError(data.email[0]);
+                } else if (data.name) {
+                    setApiError(data.name[0])
+                } else if (data.password) {
+                    setApiError(data.password[0])
+                } else if (data.non_field_errors) {
+                    setApiError(data.non_field_errors[0]);
+                } else {
+                    setApiError("Registration failed. Please try again.");
+                }
+                throw new Error('Registration failed');
+            }
+            console.log('Registration successful:', data);
+            router.push('/signin/');
+        }
+        catch (error) {
+            console.error('Registration error:', error);
+            setApiError("Unexpected error occured. Please try again.");
+        }
+        finally {
+            setIsLoading(false);
+        }
     }
 
 
@@ -61,7 +113,7 @@ export function UserSignupForm() {
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                     control={form.control} 
-                    name="fullname"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Fullname</FormLabel>
@@ -107,7 +159,30 @@ export function UserSignupForm() {
                         </FormItem>
                     )}                   
                 />
-                <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">Submit</Button>
+                <FormField
+                    control={form.control} 
+                    name="password2"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Password</FormLabel>
+                            <FormControl>
+                                <Input placeholder="********" {...field}/>
+                            </FormControl>
+                            <FormDescription>
+                                Enter the same password again.
+                            </FormDescription>
+                            <FormMessage/>
+                        </FormItem>
+                    )}                   
+                />
+                {apiError && (
+                    <Alert variant="destructive" className="mt-4">
+                        <AlertDescription>{apiError}</AlertDescription>
+                    </Alert>
+                )}
+                <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">
+                    {isLoading ? 'Submitting...' : 'Submit'}
+                </Button>
             </form>
             {/* Login instead link */}
             <div className="mt-4">

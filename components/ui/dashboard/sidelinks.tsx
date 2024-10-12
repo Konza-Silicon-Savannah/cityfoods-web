@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Button } from '../button';
 
 //Map of links to display in the side navigation.
 const links = [
@@ -26,24 +28,62 @@ const links = [
 ];
 
 const SideBottomLinks = () => {
+    const router = useRouter();
+
+    const handleLogout = async() => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/accounts/api/logout/',{
+                method: 'POST',
+                credentials: 'include', //including cookies in the request
+            });
+
+            if (response.ok) {
+                // redirect to homepage after successful logout
+                router.push('http://localhost:3000');
+            } else {
+                console.error('Logout failed');
+                //optionally,handle failed logout (show error message).
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            // Handle network errors here.
+        }
+    };
+
     return (
         <>
             {links.map((link) => {
                 return (
                     <div key={link.name} className='flex w-full'>
-                        <Link 
-                            href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start  px-4 md:px-4",
-                                {
-                                "bg-sky-100": pathname === link.href,
-                                },
-                            )}'
-                        >
-                            <div className='flex space-x-4 md:space-x-2 items-center'>
+                        {link.name === 'Logout' ? (
+                            <Button 
+                                variant='ghost'
+                                onClick={handleLogout}
+                                className='{ clsx ("flex w-full grow items-center rounded-full text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start  px-4 md:px-4",
+                                    {
+                                    "bg-sky-100": pathname === link.href,
+                                    },
+                                )}'
+                            >
                                 {link.icon}
-                                <p className='block p-2'>{link.name}</p>
-                            </div>
-                        </Link>
+                                <p className='block px-4'>{link.name}</p>
+                            </Button>
+                        ): (
+                            <Link 
+                                href={link.href}
+                                className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-green-800 hover:text-slate-100 md:flex-none md:justify-start  px-4 md:px-4",
+                                    {
+                                    "bg-sky-100": pathname === link.href,
+                                    },
+                                )}'
+                            >
+                                <div className='flex space-x-4 md:space-x-2 items-center'>
+                                    {link.icon}
+                                    <p className='block p-2'>{link.name}</p>
+                                </div>
+                            </Link>
+                        )}
+                        
                     </div>
                 );
             })}
