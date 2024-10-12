@@ -34,17 +34,36 @@ const SideBottomLinks = () => {
 
     const handleLogout = async() => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/accounts/api/logout/',{
+            // Retrieve the token from localStorage
+            const token = localStorage.getItem('authToken');
+
+            if (!token) {
+                console.error('No authentication token found');
+                return;
+            }
+
+            const response = await fetch('http://localhost:8000/accounts/api/logout/', {
                 method: 'POST',
-                credentials: 'include', //including cookies in the request
+                credentials: 'include', // including cookies in the request
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}` // Include the token in the Authorization header
+                },
+            
             });
 
             if (response.ok) {
+                // Clear the token from localStorage
+                localStorage.removeItem('authToken');
+                
                 // redirect to homepage after successful logout
-                router.push('http://localhost:3000');
+                router.push('/');
             } else {
-                //optionally,handle failed logout (show error message).
+                // Optionally, handle failed logout (show error message).
                 console.error('Logout failed');
+                // Optionally, you can check the response status and body for more details
+                const errorBody = await response.text();
+                console.error('Error details:', response.status, errorBody);
             }
         } catch (error) {
             // Handle network errors here.
