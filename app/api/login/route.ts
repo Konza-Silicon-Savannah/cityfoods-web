@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     // Set cookies
     res.cookies.set('authToken', data.token, {
-      // httpOnly: true,
+      httpOnly: false,
       sameSite: 'strict',
       maxAge: 60 * 15, // 15 minutes
       path: '/',
@@ -48,6 +48,17 @@ export async function POST(req: Request) {
     //   maxAge: 60 * 60 * 24 * 7, // 1 week
     //   path: '/',
     // });
+
+    // Set user data cookie
+    const userData = {
+      role: data.user.role,
+    };
+    res.cookies.set('userData', JSON.stringify(userData), {
+      httpOnly: false, // Allow client-side access
+      sameSite: 'strict',
+      maxAge: 60 * 15, // 15 minutes
+      path: '/',
+    });
 
     return res;
   } catch (error) {

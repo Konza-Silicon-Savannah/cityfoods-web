@@ -85,15 +85,15 @@ export function OrderTable() {
             </TableHeader>
             <TableBody>
                 {orders.map((order) => (
-                <TableRow key={order.order}>
-                    <TableCell className="font-medium">{order.order}</TableCell>
-                    <TableCell className="">{order.customer}</TableCell>
-                    <TableCell className="">{order.date}</TableCell>
-                    <TableCell>{order.paymentMethod}</TableCell>
-                    <TableCell>{order.paymentStatus}</TableCell>
-                    <TableCell className="">...</TableCell>
-                    <TableCell className="text-right">{order.totalAmount}</TableCell>
-                </TableRow>
+                  <TableRow key={order.order}>
+                      <TableCell className="font-medium">{order.order}</TableCell>
+                      <TableCell className="">{order.customer}</TableCell>
+                      <TableCell className="">{order.date}</TableCell>
+                      <TableCell>{order.paymentMethod}</TableCell>
+                      <TableCell className="flex items-center justify-items-center">{order.paymentStatus}</TableCell>
+                      <TableCell className="">...</TableCell>
+                      <TableCell className="text-right">{order.totalAmount}</TableCell>
+                  </TableRow>
                 ))}
             </TableBody>
             <TableFooter>

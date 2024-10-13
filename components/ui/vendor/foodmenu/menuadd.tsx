@@ -1,14 +1,13 @@
-"use client";
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import axios from 'axios';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
+  FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
@@ -24,85 +23,121 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Switch } from "@/components/ui/switch";
 import { Combobox } from './multiselect';
+import { Checkbox } from "@/components/ui/checkbox"
+
+const api = axios.create({
+  baseURL: 'http://localhost:8000/api/',
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers.Authorization = `Token ${token}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
 const formSchema = z.object({
     name: z.string().min(2, {
       message: "Name must be at least 2 characters.",
     }),
     price: z.string().min(2, {
-        message: "price must be at least 2 characters.",
-      }),
-    description: z.string().min(2, {
-        message: "price must be at least 2 characters.",
-      }),
-    menucategory: z.string().min(2, {
-        message: "price must be at least 2 characters.",
-      }),
-    days: z.array(z.string()).optional(),
-    image: z.any()
-        .refine((file) => file instanceof File, {
-            message: "Please upload a file",
-        })
-        .refine((file) => ["image/jpeg", "image/png"].includes(file?.type), {
-            message: "Only .jpg and .png files are accepted.",
-        })
-        .refine((file) => file?.size <= 5 * 1024 * 1024, {
-            message: "File size should be less than 5MB.",
-        })
-  });
+        message: "Price must be at least 2 characters.",
+    }),
+    description: z.string().optional(),
+    menu_category: z.string(),
+    days_available: z.array(z.string()),
+    image: z.any().optional(),
+    available: z.boolean().default(true), // Add this line
+});
 
-// Separate toast function
-function showToast() {
-    toast("Food Item Created Successfully", {
-      description: "You can now close the dialog",
-      action: {
-        label: "Undo",
-        onClick: () => console.log("Undo action triggered"),
-      },
+function showToast(message: string) {
+    toast(message, {
+      description: "You can now close the dialog"
     });
-  }
-
-// 2. Define a submit handler.
-function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log("Form Submitted", values);  // Debugging log
-    // Call the toast function after form submission
-    showToast();
-
-  }
+}
 
 export default function FoodAdd() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await api.get('menu-categories/');
+            setCategories(response.data);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            showToast('Failed to fetch menu categories');
+        }
+    };
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
           name: "",
-          price:"",
-          description:"",
-          menucategory:"",
-          days: [],
+          price: "",
+          description: "",
+          menu_category: "",
+          days_available: [],
           image: undefined,
         },
-      })
+    });
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            const formData = new FormData();
+            formData.append('name', values.name);
+            formData.append('price', values.price);
+            formData.append('description', values.description || '');
+            formData.append('menu_category', values.menu_category);
+            formData.append('days_available', values.days_available.join(', ')); // Join array into string
+            formData.append('available', String(values.available)); // Add this line
+            if (values.image) {
+                formData.append('image', values.image);
+            }
+
+            // Log the FormData contents
+            console.log("FormData contents:");
+            formData.forEach((value, key) => {
+                console.log(key, value);
+            });
+
+            const response = await api.post('food-items/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            console.log('Food item created:', response.data);
+            showToast('Food Item Created Successfully');
+            form.reset();
+        } catch (error) {
+            console.error('Error creating food item:', error);
+            showToast('Failed to create food item');
+        }
+    };
+
     return (
-        <div className=''>
+        <div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button  className='rounded-lg bg-green-600'>Add Food Item</Button>
+                    <Button className='rounded-lg bg-green-600'>Add Food Item</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
@@ -155,22 +190,23 @@ export default function FoodAdd() {
                                 />
                                 <FormField 
                                     control={form.control}
-                                    name="menucategory"
+                                    name="menu_category"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Menu Category</FormLabel>
                                             <FormControl>
                                                 <Select onValueChange={field.onChange} value={field.value}>
                                                     <SelectTrigger className="w-full">
-                                                        <SelectValue placeholder='select' {...field} />
+                                                        <SelectValue placeholder='select' />
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectGroup>
                                                         <SelectLabel>Menu Categories</SelectLabel>
-                                                        <SelectItem value="Main Course">Main Course</SelectItem>
-                                                        <SelectItem value="Desert">Desert</SelectItem>
-                                                        <SelectItem value="Cold Drinks">Cold Drinks</SelectItem>
-                                                        <SelectItem value="Side-Dish">Side Dish</SelectItem>
+                                                        {categories.map((category) => (
+                                                            <SelectItem key={category.id} value={category.id.toString()}>
+                                                                {category.name}
+                                                            </SelectItem>
+                                                        ))}
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
@@ -180,13 +216,35 @@ export default function FoodAdd() {
                                 />
                                 <FormField 
                                     control={form.control}
-                                    name="days"
+                                    name="days_available"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Available on ?</FormLabel>
                                             <FormControl>
-                                                <Combobox value={field.value ?? []} onChange={field.onChange} />
+                                                <Combobox value={field.value} onChange={field.onChange} />
                                             </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField 
+                                    control={form.control}
+                                    name="available"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                            <FormControl>
+                                                <Checkbox
+                                                    checked={field.value}
+                                                    onCheckedChange={field.onChange}
+                                                />
+                                            </FormControl>
+                                            <div className="space-y-1 leading-none">
+                                                <FormLabel>
+                                                    Available
+                                                </FormLabel>
+                                                <FormDescription>
+                                                    Is this item currently available?
+                                                </FormDescription>
+                                            </div>
                                         </FormItem>
                                     )}
                                 />
@@ -225,6 +283,5 @@ export default function FoodAdd() {
                 </DialogContent>
             </Dialog>
         </div>
-    )
+    );
 }
-

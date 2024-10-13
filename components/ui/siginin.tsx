@@ -41,7 +41,7 @@ export function UserLoginForm() {
     useEffect(() => {
         if (isRedirecting) {
             console.log("Attempting to redirect...");
-            router.push('/dashboard/home');
+            // The actual redirection will happen in onSubmit
         }
     }, [isRedirecting, router]);
 
@@ -62,14 +62,6 @@ export function UserLoginForm() {
             const data = await response.json();
             console.log('Login response:', data);
             
-            if (data.success) {
-                const token = data.token;
-                // Store token in cookies
-                document.cookie = `authToken=${token}; path=/; samesite=strict;`; //you might not want to set secure to true, as this would require HTTPS
-                console.log('Token stored:', token);
-                // Redirect or update state as needed
-            }
-
             if (!response.ok) {
                 if (data.message) {
                     setApiError(data.message);
@@ -81,22 +73,31 @@ export function UserLoginForm() {
                 return;
             }
 
-            if (!data.token) {
-                console.error('No token received from server');
-                setApiError('Authentication failed: No token received');
+            if (!data.token || !data.user) {
+                console.error('No token or user data received from server');
+                setApiError('Authentication failed: Incomplete data received');
                 return;
             }
 
-            // Store the token in localStorage (or sessionStorage, depending on your needs)
-            localStorage.setItem('authToken', data.token);  // Save the auth token
+            // Store the token in localStorage
+            localStorage.setItem('authToken', data.token);
             console.log('Token stored:', data.token);
-            console.log('Token received:', data.token.substring(0, 10) + '...');
 
-            // Check if cookies are set
-            console.log('Cookies:', document.cookie);
+            // Store user data (you might want to store only necessary information)
+            localStorage.setItem('userData', JSON.stringify(data.user));
 
             console.log('Login successful, preparing to redirect...');
             setIsRedirecting(true);
+
+            // Redirect based on user role
+            if (data.user.role === 'customer') {
+                router.push('/dashboard/home');
+            } else if (data.user.role === 'vendor') {
+                router.push('/vendor');
+            } else {
+                console.error('Unknown user role:', data.user.role);
+                setApiError('Unknown user role. Please contact support.');
+            }
         } catch (error) {
             console.error('Login error:', error);
             setApiError("An unexpected error occurred. Please try again.");

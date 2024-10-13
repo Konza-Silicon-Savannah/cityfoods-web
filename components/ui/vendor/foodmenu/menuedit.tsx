@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -35,6 +36,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Combobox } from './multiselect';
 
+const api = axios.create({
+  baseURL: 'http://localhost:8000/api/',
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers.Authorization = `Token ${token}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
 const formSchema = z.object({
     name: z.string().min(2, {
       message: "Name must be at least 2 characters.",
@@ -45,55 +60,115 @@ const formSchema = z.object({
     description: z.string().min(2, {
         message: "description must be at least 2 characters.",
       }),
-    menucategory: z.string().min(2, {
+    menu_category: z.string().min(1, {
         message: "category must be selected.",
       }),
-    days: z.array(z.string()).optional(),
-    image: z.any()
-        .refine((file) => file instanceof File, {
-            message: "Please upload a valid file",
-        })
-        .refine((file) => ["image/jpeg", "image/png"].includes(file?.type), {
-            message: "Only .jpg and .png files are accepted.",
-        })
-        .refine((file) => file?.size <= 5 * 1024 * 1024, {
-            message: "File size should be less than 5MB.",
-        }),
+    days_available: z.array(z.string()).optional(),
+    image: z.any().optional(),
   })
 
-// Separate toast function
-function showToast() {
-    toast("Food Item Updated Successfully", {
+function showToast(message: string) {
+    toast(message, {
       description: "You can now close the dialog",
-      action: {
-        label: "Undo",
-        onClick: () => console.log("Undo action triggered"),
-      },
     });
-  }
+}
 
-// 2. Define a submit handler.
-function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log("Form Submitted", values);  // Debugging log
-    // Call the toast function after form submission
-    showToast();
+interface FoodItem {
+  id: number;
+  name: string;
+  price: string;
+  description: string;
+  menu_category: string;
+  days_available: string;
+  image: string;
+}
 
-  }
+interface FoodEditProps {
+  foodItem: FoodItem;
+  onUpdate: () => void;
+}
 
-export default function FoodEdit() {
+export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await api.get('menu-categories/');
+            setCategories(response.data);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+            showToast('Failed to fetch menu categories');
+        }
+    };
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          name: "",
-          price:"",
-          description:"",
-          menucategory:"",
-          days:[],
+          name: foodItem.name,
+          price: foodItem.price,
+          description: foodItem.description,
+          menu_category: foodItem.menu_category,
+          days_available: foodItem.days_available.split(', '),
           image: undefined,
         },
       })
+
+    useEffect(() => {
+      form.reset({
+        name: foodItem.name,
+        price: foodItem.price,
+        description: foodItem.description,
+        menu_category: foodItem.menu_category,
+        days_available: foodItem.days_available.split(', '),
+        image: foodItem.image,
+      });
+    }, [foodItem, form]);
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+      try {
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(values)) {
+          if (key === 'image' && value instanceof File) {
+            formData.append(key, value);
+          } else if (key === 'days_available') {
+            formData.append(key, (value as string[]).join(', '));
+          } else {
+            formData.append(key, value as string);
+          }
+        }
+
+        await api.patch(`food-items/${foodItem.id}/`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        showToast("Food Item Updated Successfully");
+        onUpdate();
+      } catch (error) {
+        console.error('Error updating food item:', error);
+        showToast("Failed to update food item");
+      }
+    }
+
+    const handleDelete = async () => {
+      if (window.confirm("Are you sure you want to delete this food item?")) {
+        try {
+          await api.delete(`food-items/${foodItem.id}/`);
+          showToast("Food Item Deleted Successfully");
+          onUpdate();
+        } catch (error) {
+          console.error('Error deleting food item:', error);
+          showToast("Failed to delete food item");
+        }
+      }
+    }
+
     return (
         <div className=''>
             <Dialog>
@@ -151,22 +226,23 @@ export default function FoodEdit() {
                                 />
                                 <FormField 
                                     control={form.control}
-                                    name="menucategory"
+                                    name="menu_category"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Menu Category</FormLabel>
                                             <FormControl>
-                                                <Select onValueChange={field.onChange} value={field.value}>
+                                                <Select onValueChange={field.onChange} value={field.value} >
                                                     <SelectTrigger className="w-full">
-                                                        <SelectValue placeholder='Main Course' {...field} />
+                                                        <SelectValue placeholder='Select category' />
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectGroup>
                                                         <SelectLabel>Menu Categories</SelectLabel>
-                                                        <SelectItem value="Main Course">Main Course</SelectItem>
-                                                        <SelectItem value="Desert">Desert</SelectItem>
-                                                        <SelectItem value="Cold Drinks">Cold Drinks</SelectItem>
-                                                        <SelectItem value="Side-Dish">Side Dish</SelectItem>
+                                                        {categories.map((category) => (
+                                                            <SelectItem key={category.id} value={category.id.toString()}>
+                                                                {category.name}
+                                                            </SelectItem>
+                                                        ))}
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
@@ -176,7 +252,7 @@ export default function FoodEdit() {
                                 />
                                 <FormField 
                                     control={form.control}
-                                    name="days"
+                                    name="days_available"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Available on ?</FormLabel>
@@ -216,7 +292,7 @@ export default function FoodEdit() {
                                     >
                                         Save
                                     </Button>
-                                    <Button variant="destructive" className="rounded-lg">Delete</Button>
+                                    <Button variant="destructive" className="rounded-lg" onClick={handleDelete} type="button">Delete</Button>
                                 </div>
                             </form>
                         </Form>
@@ -226,4 +302,3 @@ export default function FoodEdit() {
         </div>
     )
 }
-

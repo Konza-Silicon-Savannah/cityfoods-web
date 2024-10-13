@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/app/hooks/use-auth';
+import { Button } from '../button';
 
 //Map of links to display in the side navigation.
 const links = [
@@ -26,25 +28,47 @@ const links = [
 ];
 
 const BottomLinks = () => {
+
+    const { logout } = useAuth();
+
+    const handleLogout = async() => {
+        await logout();
+    };
+
     return (
         <>
             {links.map((link) => {
                 return (
                     <div key={link.name} className='flex w-full'>
-                        <Link 
-                            
-                            href={link.href}
-                            className='{ clsx ("flex w-full grow items-start rounded-md text-sm font-medium hover:bg-green-600 hover:text-slate-100 md:flex-none md:justify-start px-4 md:px-4",
-                                {
-                                "bg-sky-100": pathname === link.href,
-                                },
-                            )}'
-                        >
-                            <div className='flex space-x-4 items-center'>
+                        {link.name === 'Logout' ? (
+                            <Button 
+                                variant='ghost'
+                                onClick={handleLogout}
+                                className='{ clsx ("flex w-full grow items-center rounded-full text-sm font-medium hover:bg-slate-100 hover:text-slate-800 md:flex-none md:justify-start  px-4 md:px-4",
+                                    {
+                                    "bg-sky-100": pathname === link.href,
+                                    },
+                                )}'
+                            >
                                 {link.icon}
-                                <p className='p-2'>{link.name}</p>
-                            </div>
-                        </Link>
+                                <p className='block px-4'>{link.name}</p>
+                            </Button>
+                        ): (
+                            <Link 
+                                href={link.href}
+                                className='{ clsx ("flex w-full grow items-start rounded-full text-sm font-medium hover:bg-slate-100 hover:text-slate-800 md:flex-none md:justify-start  px-4 md:px-4",
+                                    {
+                                    "bg-sky-100": pathname === link.href,
+                                    },
+                                )}'
+                            >
+                                <div className='flex space-x-4 md:space-x-2 items-center'>
+                                    {link.icon}
+                                    <p className='block p-2'>{link.name}</p>
+                                </div>
+                            </Link>
+                        )}
+                        
                     </div>
                 );
             })}

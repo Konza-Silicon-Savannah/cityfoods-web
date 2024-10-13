@@ -46,7 +46,8 @@ export default async function Page() {
     const data = await getData()
    
     return (
-      <div className="h-screen md:py-6 md:px-10 md:border">
+      <div className="h-full md:py-4 md:px-10 md:border">
+        <p className='font-bold mb-2'>Business overview</p>
         <CardAnalytics />
         <DataTable columns={columns} data={data} />
       </div>

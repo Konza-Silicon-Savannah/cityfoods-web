@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // File: app/api/logout/route.ts
 
 import { NextResponse } from 'next/server';
