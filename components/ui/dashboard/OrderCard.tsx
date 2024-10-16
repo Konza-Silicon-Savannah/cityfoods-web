@@ -43,7 +43,7 @@ type CardProps = React.ComponentProps<typeof Card>
 
 export function OrderCard({ className, ...props }: CardProps) {
   return (
-    <Card className={cn("w-[350px]", className)} {...props}>
+    <Card className={cn("w-[350px] ", className)} {...props}>
       <CardHeader>
         <CardTitle>Your Order</CardTitle>
         <CardDescription>Ordering 3 items.</CardDescription>

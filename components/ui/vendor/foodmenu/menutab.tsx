@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Card,
-  CardContent,
-  CardFooter
-} from "@/components/ui/card"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit"
-import Image from "next/image"
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
+import Image from "next/image";
 
 interface MenuCategory {
   id: number;
@@ -30,18 +21,10 @@ interface FoodItem {
   days_available: string;
 }
 
+// Configure axios to send credentials (cookies) with requests
 const api = axios.create({
   baseURL: 'http://localhost:8000/api/',
-});
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    config.headers.Authorization = `Token ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
+  withCredentials: true,  // Ensure cookies (HTTP-only) are sent with requests
 });
 
 export function TabsMenu() {
@@ -79,7 +62,7 @@ export function TabsMenu() {
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-2">
       <TabsList className="grid w-full grid-cols-5 my-4">
         {categories.map((category) => (
-          <TabsTrigger key={category.id} value={category.id.toString()} className="rounded-full bg-green-600 text-white">
+          <TabsTrigger key={category.id} value={category.id.toString()} className="rounded-full">
             <span>{category.name}</span>
           </TabsTrigger>
         ))}
@@ -104,30 +87,23 @@ export function TabsMenu() {
                       ) : (
                           <p className='p-6'>No image available</p>
                       )}
-
-                      {/* <Image
-                        src={item.image}
-                        alt={item.name}
-                        className="object-cover h-32 w-full rounded-lg"
-                        height={32}
-                        width={100}
-                      /> */}
                     </div>
                     <div className="space-y-2 w-full space-x-6 h-full">
                       <h1 className="font-bold px-6 mt-2">{item.name}</h1>
-                      <p id="name" className="text-sm">
-                        {item.description.length > 18 
+                      <p id="name" className="text-sm text-bold">
+                        {item.description && item.description.length > 18 
                           ? `${item.description.substring(0, 18)}... `
-                          : item.description}
-                        {item.description.length > 18 && (
+                          : item.description || 'No description available'}
+                        {item.description && item.description.length > 18 && (
                           <span className="text-blue-600">Read more</span>
                         )}
                       </p>
+
                     </div>
                   </CardContent>
-                  <CardFooter className="justify-between mt-4">
-                    <p className="font-extralight">Price: <span className="text-yellow-900 font-bold">{item.price}</span></p>
-                    <FoodEdit foodItem={item} />
+                  <CardFooter className="justify-between mt-5">
+                    <p className="font-extralight">Price: <span className="text-yellow-900 font-bold text-sm">{item.price}</span></p>
+                    <FoodEdit foodItem={item}/>
                   </CardFooter>
                 </Card>
               ))}
@@ -135,5 +111,5 @@ export function TabsMenu() {
         </TabsContent>
       ))}
     </Tabs>
-  )
+  );
 }

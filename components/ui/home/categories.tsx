@@ -7,7 +7,7 @@ import {
 
 const Categories = () => {
   return (
-    <section className="container mx-auto mt-4 mb-4">
+    <section className="w-full mt-4 mb-4">
         <div className="p-6">
             <p className="font-semibold text-gray-800 capitalize">popular categories</p>
             <div className="md:grid gap-4 md:gap-16 mt-6 xl:mt-10 md:grid-cols-5 overflow-x-auto md:overflow-x-none flex sm:space-x-4">

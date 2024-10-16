@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className='w-full min-h-screen bg-green-50 flex flex-col'>
         <Topnav />
-        <div className='container'>
+        <div className=''>
           <Categories />
         </div>
         <Foodcard />

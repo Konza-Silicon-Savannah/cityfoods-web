@@ -1,17 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import Cart from './cart';
+import { Input } from '@/components/ui/input';
 
 const Header = () => {
   return (
-    <header className="w-full md:container flex justify-between items-center py-4 px-4">
-        <div className="flex items-center border-b border-black mx-2">
-          <SearchIcon className="text-black" />
-          <input
+    <header className="w-full flex justify-between items-center py-3 px-4">
+        <div className="flex items-center mx-2">
+          <Input
             type="text"
-            placeholder="Search for food, and more"
-            className="ml-4 p-1  bg-transparent"
+            placeholder="Search for food, and more "
+            className="border-slate-900 w-64"
           />
         </div>
         <div className="justify-between items-center flex">

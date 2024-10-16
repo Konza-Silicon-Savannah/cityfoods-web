@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -36,18 +38,28 @@ import { toast } from "sonner";
 import { Combobox } from './multiselect';
 import { Checkbox } from "@/components/ui/checkbox"
 
+
+// Helper function to retrieve the CSRF token from cookies
+function getCookie(name: string): string | null {
+    if (typeof window === 'undefined') {
+        return null; // Return null if running on the server
+    }
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        const poppedValue = parts.pop();
+        return poppedValue ? poppedValue.split(';')[0] : null;
+    }
+    return null;
+}
+
+// create API instance
 const api = axios.create({
   baseURL: 'http://localhost:8000/api/',
-});
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    config.headers.Authorization = `Token ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
+  withCredentials: true,  // Ensure cookies (HTTP-only) are sent with requests
+  headers: {
+    'X-CSRFToken': getCookie('csrftoken'), // Replace with your method to get the CSRF token
+  },
 });
 
 const formSchema = z.object({

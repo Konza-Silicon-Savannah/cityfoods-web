@@ -20,11 +20,36 @@ export function isTokenExpired(token: string): boolean {
 
 // Modified to accept req as an argument
 export async function getValidToken(req: NextRequest): Promise<string | null> {
-  const token = req.cookies.get('authToken')?.value; // Access the token from cookies
+  const accessToken = req.cookies.get('Bearer')?.value;
+  const refreshToken = req.cookies.get('refreshToken')?.value;
 
-  if (!token) {
+  if (!accessToken) {
     return null;
   }
 
-  return token;
+  if (!isTokenExpired(accessToken)) {
+    return accessToken;
+  }
+
+  if (refreshToken && !isTokenExpired(refreshToken)) {
+    try {
+      const response = await fetch('http://localhost:8000/accounts/api/token/refresh/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ refresh: refreshToken}),
+      });
+      
+      if(response.ok) {
+        const data = await response.json();
+        // In a real scenario, you'd update the cookie here. For this we'll just return the new token.
+        return data.access;
+      }
+    } catch (error) {
+      console.error('Error refreshing token:', error);
+    }
+  }
+
+  return null;
 }

@@ -38,17 +38,9 @@ import { Combobox } from './multiselect';
 
 const api = axios.create({
   baseURL: 'http://localhost:8000/api/',
+  withCredentials: true,  // Ensure cookies (HTTP-only) are sent with requests
 });
 
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    config.headers.Authorization = `Token ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -173,7 +165,7 @@ export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
         <div className=''>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="outline" className='rounded-full' size="sm">edit</Button>
+                    <Button variant="outline" className='rounded-full ' size="sm">edit</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>

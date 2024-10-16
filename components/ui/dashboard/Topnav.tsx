@@ -9,7 +9,7 @@ const Topnav = () => {
       <Header/>
 
       {/* Main Content */}
-      <main className="w-full container mt-6 px-6">
+      <main className="w-full mt-6 px-6">
         <section className="bg-black rounded-lg">
             <div className="py-4 mx-12 lg:flex lg:items-center lg:justify-between">
                 <div className="lg:items-start lg:justify-start text-left px-4">

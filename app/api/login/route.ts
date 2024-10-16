@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -20,49 +21,49 @@ export async function POST(req: Request) {
     }
 
     const data = await response.json();
-    console.log('Received tokens from backend:', data.token);
+    console.log('Received data from backend:', data);
 
-    if (!data.token) {
+    if (!data.access || !data.refresh) {
       throw new Error('No tokens received from backend');
     }
 
     const res = NextResponse.json({ 
       message: 'Login successful', 
       success: true,
-      // Send tokens back to client for debugging
-      user: data.user,
-      token: data.token
     }); 
 
-    // Set cookies
-    res.cookies.set('authToken', data.token, {
-      httpOnly: false,
-      sameSite: 'strict',
-      maxAge: 60 * 15, // 15 minutes
-      path: '/',
-    });
-
-    // res.cookies.set('refreshToken', data.refresh, {
-    //   httpOnly: true,
+    // Set HttpOnly cookies
+    cookies().set('Bearer', data.access, {
+      httpOnly: true,
     //   secure: process.env.NODE_ENV === 'production',
-    //   maxAge: 60 * 60 * 24 * 7, // 1 week
-    //   path: '/',
-    // });
-
-    // Set user data cookie
-    const userData = {
-      role: data.user.role,
-    };
-    res.cookies.set('userData', JSON.stringify(userData), {
-      httpOnly: false, // Allow client-side access
       sameSite: 'strict',
-      maxAge: 60 * 15, // 15 minutes
+      maxAge: 60 * 30, // 30 minutes
       path: '/',
     });
+
+    cookies().set('refreshToken', data.refresh, {
+      httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+      path: '/',
+    });
+
+    // Set user role in a separate, non-HttpOnly cookie
+    if (data.user && data.user.role) {
+      cookies().set('userRole', data.user.role, {
+        httpOnly: false,
+        // secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 60 * 15, // 15 minutes
+        path: '/',
+      });
+    }
 
     return res;
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: 'Login failed', success: false }, { status: 401 });
+    return NextResponse.json({ message: 'Login failed', success: false },
+    { status: 401 });
   }
 }

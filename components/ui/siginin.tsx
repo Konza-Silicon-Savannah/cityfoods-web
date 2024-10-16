@@ -1,15 +1,13 @@
 "use client"
 
-import React from 'react';
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import Link from "next/link"
-import { useRouter } from 'next/navigation'
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -18,34 +16,41 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
     email: z.string().email("Enter a valid email"),
     password: z.string().min(8, { message: "Enter a valid password" }),
-})
+});
 
 export function UserLoginForm() {
     const [apiError, setApiError] = useState("");
     const [isRedirecting, setIsRedirecting] = useState(false);
     const router = useRouter();
-    const form = useForm<z.infer<typeof formSchema>>({
+    
+    // Helper function to retrieve cookies by name
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
-            password: "",  
-        }
-    })
+            password: "",
+        },
+    });
 
     useEffect(() => {
         if (isRedirecting) {
             console.log("Attempting to redirect...");
-            // The actual redirection will happen in onSubmit
         }
     }, [isRedirecting, router]);
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values) => {
         setApiError("");
         try {
             const response = await fetch('/api/login', {
@@ -59,58 +64,55 @@ export function UserLoginForm() {
                     password: values.password,
                 }),
             });
+
             const data = await response.json();
-            console.log('Login response:', data);
-            
+            // console.log('Login response:', data);
+
             if (!response.ok) {
                 if (data.message) {
                     setApiError(data.message);
-                } else if (data.error) {
-                    setApiError(data.error);
                 } else {
                     setApiError("Login failed. Please try again.");
                 }
                 return;
             }
 
-            if (!data.token || !data.user) {
-                console.error('No token or user data received from server');
-                setApiError('Authentication failed: Incomplete data received');
+            // Tokens are now set as HttpOnly cookies by the server
+            // We don't need to store them in localStorage anymore
+
+            // Retrieve the user role from the cookie
+            const userRole = getCookie('userRole');
+            if (!userRole) {
+                console.error('User role not found in cookies');
+                setApiError('Authentication failed: User role not found');
                 return;
             }
-
-            // Store the token in localStorage
-            localStorage.setItem('authToken', data.token);
-            console.log('Token stored:', data.token);
-
-            // Store user data (you might want to store only necessary information)
-            localStorage.setItem('userData', JSON.stringify(data.user));
 
             console.log('Login successful, preparing to redirect...');
             setIsRedirecting(true);
 
             // Redirect based on user role
-            if (data.user.role === 'customer') {
+            if (userRole === 'customer') {
                 router.push('/dashboard/home');
-            } else if (data.user.role === 'vendor') {
+            } else if (userRole === 'vendor') {
                 router.push('/vendor');
             } else {
-                console.error('Unknown user role:', data.user.role);
+                console.error('Unknown user role:', userRole);
                 setApiError('Unknown user role. Please contact support.');
             }
         } catch (error) {
             console.error('Login error:', error);
             setApiError("An unexpected error occurred. Please try again.");
         }
-    }
+    };
 
     return (
         <Form {...form}>
             <div className="w-full max-w-sm">
-              <h1 className="text-3xl font-bold text-gray-900">
-                  City<span className="text-green-600">Foods</span>
-              </h1>
-              <h2 className="mt-2 text-lg text-gray-700">Welcome back 👋</h2>
+                <h1 className="text-3xl font-bold text-gray-900">
+                    City<span className="text-green-600">Foods</span>
+                </h1>
+                <h2 className="mt-2 text-lg text-gray-700">Welcome back 👋</h2>
             </div>
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 {apiError && (
@@ -119,23 +121,23 @@ export function UserLoginForm() {
                     </Alert>
                 )}
                 <FormField
-                    control={form.control} 
+                    control={form.control}
                     name="email"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input type="email" placeholder="Email@domain.com" {...field}/>
+                                <Input type="email" placeholder="Email@domain.com" {...field} />
                             </FormControl>
                             <FormDescription>
                                 Enter your email address.
                             </FormDescription>
-                            <FormMessage/>
+                            <FormMessage />
                         </FormItem>
-                    )}                   
+                    )}
                 />
                 <FormField
-                    control={form.control} 
+                    control={form.control}
                     name="password"
                     render={({ field }) => (
                         <FormItem>
@@ -146,14 +148,14 @@ export function UserLoginForm() {
                                 </div>
                             </div>
                             <FormControl>
-                                <Input type="password" placeholder="*************" {...field}/>
+                                <Input type="password" placeholder="*************" {...field} />
                             </FormControl>
                             <FormDescription>
                                 Enter your password.
                             </FormDescription>
-                            <FormMessage/>
+                            <FormMessage />
                         </FormItem>
-                    )}                   
+                    )}
                 />
                 <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">Submit</Button>
             </form>
@@ -166,5 +168,5 @@ export function UserLoginForm() {
                 </p>
             </div>
         </Form>
-    )
+    );
 }
