@@ -6,26 +6,43 @@ import {
     Dialog,
     DialogContent,
     DialogTrigger,
-    
 } from "@/components/ui/dialog";
 import { OrderCard } from './OrderCard';
 
-const Cart = () => {
-  return (
-
-    <Dialog>
-        <DialogTrigger asChild>
-            <IconButton className='px-4 text-green-700' aria-label='add to cart'>
-                <Badge badgeContent={4} color="success">
-                    <LocalMallIcon />
-                </Badge>
-            </IconButton>
-        </DialogTrigger>
-        <DialogContent className='sm:max-w-[425px]'>
-            <OrderCard />
-        </DialogContent>
-    </Dialog>
-  )
+interface CartItem {
+    id: number;
+    name: string;
+    price: string;
+    quantity: number;
 }
 
-export default Cart
+interface CartProps {
+    cartItems: CartItem[];
+    onRemoveItem: (itemId: number) => void;
+    onUpdateQuantity: (itemId: number, newQuantity: number) => void;
+}
+
+const Cart: React.FC<CartProps> = ({ cartItems = [], onRemoveItem, onUpdateQuantity }) => {
+    const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <IconButton className='px-4 text-green-700' aria-label='add to cart'>
+                    <Badge badgeContent={cartItemCount} color="success">
+                        <LocalMallIcon />
+                    </Badge>
+                </IconButton>
+            </DialogTrigger>
+            <DialogContent className='sm:max-w-[425px]'>
+                <OrderCard
+                    items={cartItems}
+                    onRemoveItem={onRemoveItem}
+                    onUpdateQuantity={onUpdateQuantity}
+                />
+            </DialogContent>
+        </Dialog>
+    );
+};
+
+export default Cart;
