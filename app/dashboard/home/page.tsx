@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Categories from "@/components/ui/home/categories";
 import withAuth from "@/withAuth";
 import FoodItem from "@/components/ui/dashboard/FoodItem";
@@ -65,7 +65,7 @@ const HomePage = () => {
           <Input
             type="text"
             placeholder="Search for food, and more "
-            className="border-slate-900 w-64"
+            className="border-slate-900 md:w-64"
           />
         </div>
         <div className="justify-between items-center flex">
@@ -116,7 +116,9 @@ const HomePage = () => {
       <div className="">
         <Categories />
       </div>
-      <FoodItem onAddToCart={addToCart} />
+      <div className="">
+        <FoodItem onAddToCart={addToCart} />
+      </div>
     </div>
   );
 };

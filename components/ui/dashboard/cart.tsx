@@ -26,7 +26,7 @@ const Cart: React.FC<CartProps> = ({ cartItems = [], onRemoveItem, onUpdateQuant
     const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <Dialog>
+        <Dialog >
             <DialogTrigger asChild>
                 <IconButton className='px-4 text-green-700' aria-label='add to cart'>
                     <Badge badgeContent={cartItemCount} color="success">

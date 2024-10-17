@@ -51,16 +51,18 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
     };
 
     return (
-        <div className="md:grid grid-cols-1 gap-4 md:gap-12 mt-4 xl:mt-4 md:grid-cols-2 xl:grid-cols-4 overflow-x-auto md:overflow-x-none flex sm:space-x-4">
+        <div className="md:grid grid-cols-1 gap-4 md:gap-12 mt-4 xl:mt-4 md:grid-cols-2 xl:grid-cols-4 overflow-x-auto md:overflow-x-none flex sm:space-x-4 px-4">
             {foodItems.map((item) => (
                 <div key={item.id} className="max-w-sm bg-white rounded-xl shadow-lg">
-                    <div className="grid md:flex items-center w-[220px] md:w-full">
+                    <div className="grid md:flex items-center w-[220px] md:w-full md:h-32">
                         <Image
                             src={item.image || "/images/fishmealhero.png"}
                             alt={item.name}
-                            className="w-full h-18 md:h-24 md:w-24 md:rounded-full "
-                            width={24}
-                            height={24}
+                            className="object-cover w-full h-32 md:h-32 md:w-32 md:rounded-full "
+                            quality={100}
+                            width={100}
+                            height={100}
+                            priority
                         />
                         <div className="md:ml-4 px-2">
                             <h4 className="text-sm text-gray-400">{item.menu_category}</h4>
