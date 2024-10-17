@@ -23,6 +23,8 @@ const Testimonial = () => {
                         src="/images/home/avatar.png"
                         className="object-cover"
                         fill
+                        sizes='100'
+                        priority
                     />
                 </div>
                 <p className='text-sm mt-3 font-bold'>Said Abdalla</p>                    

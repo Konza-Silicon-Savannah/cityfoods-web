@@ -10,11 +10,6 @@ const api = axios.create({
     withCredentials: true,
 });
 
-function showToast(message: string) {
-    toast(message, {
-        description: 'food item added to cart'
-    });
-}
 
 interface Food {
     id: number;
@@ -45,6 +40,13 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
         fetchFoodItems();
     }, []);
 
+    function showToast(message: string) {
+        toast(message, {
+            description: 'food item added to cart'
+        });
+    }
+    
+
     const handleAddToCart = (item: Food) => {
         onAddToCart(item);
         showToast(`${item.name} added to cart`);
@@ -71,7 +73,7 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
                                 <span className="flex items-center space-x-1">
                                     <span>4.5</span>
                                 </span>
-                                <span className="text-gold-600">★</span>
+                                <span className="text-gold-600">★★★★</span>
                             </div>
                         </div>
                     </div>

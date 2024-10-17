@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Categories from "@/components/ui/home/categories";
 import withAuth from "@/withAuth";
 import FoodItem from "@/components/ui/dashboard/FoodItem";
-import Cart from "@/components/ui/dashboard/cart";
+import Cart from "@/components/ui/dashboard/Cart";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
@@ -81,6 +81,7 @@ const HomePage = () => {
               src="/images/home/avatar.png"
               className="object-cover"
               fill
+              sizes="100"
             />
           </div>
         </div>
@@ -107,6 +108,7 @@ const HomePage = () => {
                   className="object-cover h-12 w-12 md:h-24 md:w-24"
                   height={100}
                   width={100}
+                  sizes="100"
                 />
               </div>
             </div>

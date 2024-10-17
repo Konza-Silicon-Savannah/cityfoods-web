@@ -39,10 +39,10 @@ interface OrderCardProps extends React.ComponentProps<typeof Card> {
 
 export function OrderCard({ className, items, onRemoveItem, onUpdateQuantity, ...props }: OrderCardProps) {
   const subtotal = items.reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0);
-  const tax = subtotal * 0.1;
+  const tax = subtotal * 0.06;
   const total = subtotal + tax;
   return (
-    <Card className={cn("w-[350px] ", className)} {...props}>
+    <Card className={cn("w-full", className)} {...props}>
       <CardHeader>
         <CardTitle>Your Order</CardTitle>
         <CardDescription>Ordering {items.length} items.</CardDescription>
@@ -67,6 +67,7 @@ export function OrderCard({ className, items, onRemoveItem, onUpdateQuantity, ..
                               size="sm"
                               variant="outline"
                               onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                              className='rounded-lg'
                           >
                               -
                           </Button>
@@ -75,6 +76,7 @@ export function OrderCard({ className, items, onRemoveItem, onUpdateQuantity, ..
                               size="sm"
                               variant="outline"
                               onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                              className='rounded-lg'
                           >
                               +
                           </Button>
@@ -82,6 +84,7 @@ export function OrderCard({ className, items, onRemoveItem, onUpdateQuantity, ..
                               size="sm"
                               variant="destructive"
                               onClick={() => onRemoveItem(item.id)}
+                              className='rounded-lg'
                           >
                               Remove
                           </Button>
@@ -99,7 +102,7 @@ export function OrderCard({ className, items, onRemoveItem, onUpdateQuantity, ..
         </div>
         <div className="mb-2 ">
             <div className="flex justify-between">
-                <p>Tax (10%)</p>
+                <p>Tax (6%)</p>
                 <p>Kes {tax.toFixed(2)}</p>
             </div>
         </div>
