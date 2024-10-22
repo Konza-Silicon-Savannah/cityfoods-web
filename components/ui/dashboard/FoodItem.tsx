@@ -1,14 +1,8 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-
-// Define API request endpoint
-const api = axios.create({
-    baseURL: 'http://localhost:8000/api/',
-    withCredentials: true,
-});
+import api from '@/app/api/axios'; // Import the configured axios instance
 
 
 interface Food {

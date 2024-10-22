@@ -1,8 +1,46 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import api from "@/app/api/axios"; // Import the configured axios instance
+import { toast } from "sonner";
+
+interface MenuCategory {
+  id: number;
+  name: string;
+  image: string | null;
+}
+
+function showToast(message: string) {
+  toast(message, {
+    description: "You can now close the dialog",
+  });
+}
 
 const Categories = () => {
+  const [categories, setCategories] = useState<MenuCategory[]>([]);
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await api.get("menu-categories/");
+      setCategories(response.data);
+    } catch (error: any) {
+      setError(error.response?.data?.detail || "Error fetching categories");
+      console.error("Error fetching categories:", error);
+      showToast("Failed to fetch menu categories");
+    }
+  };
+
+  if (error) {
+    return <div className="text-red-500"></div>;
+  }
+
   return (
     <section className="w-full mt-4 mb-4">
       <div className="p-6">
@@ -10,121 +48,39 @@ const Categories = () => {
           popular categories
         </p>
         <div className="md:grid gap-4 md:gap-16 mt-6 xl:mt-10 md:grid-cols-5 overflow-x-auto md:overflow-x-none flex sm:space-x-4">
-          <Card className="grid grid-flow-row border-none shadow-none">
-            <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-              <div className="rounded-full w-full md:w-24">
-                <Image
-                  src="/images/fishmealhero.png"
-                  alt="fooditem"
-                  className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
-                  height={24}
-                  width={100}
-                  sizes="100"
-                  priority
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="grid justify-center">
-              <div className="md:px-2">
-                <h1 className="font-bold">Breakfast</h1>
-              </div>
-              <p className="font-extralight md:px-2 text-sm">
-                Rating <span className="text-yellow-900 font-bold">4.5</span>
-              </p>
-            </CardFooter>
-          </Card>
-          <Card className="grid grid-flow-row border-none shadow-none">
-            <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-              <div className="rounded-full w-full md:w-24">
-                <Image
-                  src="/images/fishmealhero.png"
-                  alt="fooditem"
-                  className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
-                  height={24}
-                  width={100}
-                  sizes="100"
-                  priority
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="grid justify-center">
-              <div className="md:px-2">
-                <h1 className="font-bold">Breakfast</h1>
-              </div>
-              <p className="font-extralight md:px-2 text-sm">
-                Rating <span className="text-yellow-900 font-bold">4.5</span>
-              </p>
-            </CardFooter>
-          </Card>
-          <Card className="grid grid-flow-row border-none shadow-none">
-            <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-              <div className="rounded-full w-full md:w-24">
-                <Image
-                  src="/images/fishmealhero.png"
-                  alt="fooditem"
-                  className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
-                  height={24}
-                  width={100}
-                  sizes="100"
-                  priority
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="grid justify-center">
-              <div className="md:px-2">
-                <h1 className="font-bold">Breakfast</h1>
-              </div>
-              <p className="font-extralight md:px-2 text-sm">
-                Rating <span className="text-yellow-900 font-bold">4.5</span>
-              </p>
-            </CardFooter>
-          </Card>
-          <Card className="grid grid-flow-row border-none shadow-none">
-            <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-              <div className="rounded-full w-full md:w-24">
-                <Image
-                  src="/images/fishmealhero.png"
-                  alt="fooditem"
-                  className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
-                  height={24}
-                  width={100}
-                  sizes="100"
-                  priority
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="grid justify-center">
-              <div className="md:px-2">
-                <h1 className="font-bold">Breakfast</h1>
-              </div>
-              <p className="font-extralight md:px-2 text-sm">
-                Rating <span className="text-yellow-900 font-bold">4.5</span>
-              </p>
-            </CardFooter>
-          </Card>
-          <Card className="grid grid-flow-row border-none shadow-none">
-            <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-              <div className="rounded-full w-full md:w-24">
-                <Image
-                  src="/images/fishmealhero.png"
-                  alt="fooditem"
-                  className="object-cover w-full md:h-24 md:w-24 md:rounded-full "
-                  height={24}
-                  width={100}
-                  sizes="100"
-                  priority
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="grid justify-center">
-              <div className="md:px-2">
-                <h1 className="font-bold">Breakfast</h1>
-              </div>
-              <p className="font-extralight md:px-2 text-sm">
-                Rating <span className="text-yellow-900 font-bold">4.5</span>
-              </p>
-            </CardFooter>
-          </Card>
+          {categories.map((category) => (
+            <Card
+              key={category.id}
+              className="grid grid-flow-row border-none shadow-none"
+            >
+              <CardContent className="grid items-center place-items-center p-0 md:mt-2">
+                <div className="rounded-full w-32 md:w-32 h-32">
+                  {category?.image ? (
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      className="object-cover h-32 w-32 rounded-full"
+                      height={32}
+                      width={32}
+                      sizes="100"
+                      priority
+                    />
+                  ) : (
+                    <p className="p-6">No image available</p>
+                  )}
+                </div>
+              </CardContent>
+              <CardFooter className="grid justify-center">
+                <div className="md:px-2">
+                  <h1 className="font-bold">{category.name}</h1>
+                </div>
+                <p className="font-extralight md:px-2 text-sm">
+                  Rating <span className="text-yellow-900 font-bold">4.5</span>{" "}
+                  {/* Placeholder rating */}
+                </p>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

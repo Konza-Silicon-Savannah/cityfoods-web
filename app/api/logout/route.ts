@@ -7,7 +7,7 @@ import { cookies } from 'next/headers';
 export async function POST(req: Request) {
   try {
     const cookieStore = cookies();
-    const token = cookieStore.get('authToken');
+    const token = cookieStore.get('Bearer');
 
     if (!token) {
       throw new Error('No authentication token found');
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${token.value}`
+        'Authorization': `Bearer ${token.value}`
       },
     });
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     });
 
     // Clear the authToken cookie
-    res.cookies.set('authToken', '', {
+    res.cookies.set('Bearer', '', {
       httpOnly: true,
       // secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
