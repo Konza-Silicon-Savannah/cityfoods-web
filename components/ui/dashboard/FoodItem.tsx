@@ -12,6 +12,7 @@ interface Food {
     description: string;
     menu_category: string;
     image: string;
+    vendor: string;
 }
 
 interface FoodItemProps {

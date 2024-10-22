@@ -60,6 +60,17 @@ export async function POST(req: Request) {
       });
     }
 
+    // Set user in a separate, HttpOnly cookie
+    if (data.user.id) {
+      cookies().set('user', data.user.id, {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 60 * 15, // 15 minutes
+        path: '/',
+      });
+    }
+
     return res;
   } catch (error) {
     console.log(error);
