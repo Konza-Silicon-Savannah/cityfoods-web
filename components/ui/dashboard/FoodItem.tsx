@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import api from '@/app/api/axios'; // Import the configured axios instance
+import api from '@/app/auth/axios'; // Import the configured axios instance
 
 
 interface Food {

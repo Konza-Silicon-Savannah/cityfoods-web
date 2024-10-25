@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const { email, password } = await req.json();
 
   try {
-    const response = await fetch('http://localhost:8000/accounts/api/login/', {
+    const response = await fetch('http://cityfoods.konza.go.ke/accounts/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

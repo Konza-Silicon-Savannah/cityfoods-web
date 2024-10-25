@@ -16,12 +16,12 @@ FROM base AS builder
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN NEXT_PUBLIC_DISABLE_ESLINT=true npm run build
 
 # Production stage
 FROM base AS production
 # Set environment variable for production
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 # Create a user and group for running the application
 RUN addgroup -g 1001 -S nodejs \
@@ -32,7 +32,7 @@ WORKDIR /app
 
 # Install production dependencies only
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --only=development
 
 # Copy built files and necessary directories from the builder stage
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next

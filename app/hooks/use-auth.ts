@@ -17,7 +17,7 @@ export function useAuth() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/check-auth', {
+        const response = await fetch('/auth/check-auth', {
           method: 'GET',
           credentials: 'include', // Ensure cookies are sent with the request
         });
@@ -45,7 +45,7 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      const response = await fetch('/api/logout', {
+      const response = await fetch('/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });

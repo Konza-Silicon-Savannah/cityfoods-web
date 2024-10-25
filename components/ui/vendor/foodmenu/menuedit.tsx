@@ -34,7 +34,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Combobox } from './multiselect';
-import api from '@/app/api/axios'; // Import the configured axios instance
+import api from '@/app/auth/axios'; // Import the configured axios instance
 
 
 

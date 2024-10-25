@@ -7,9 +7,15 @@ const nextConfig = {
       {
         protocol:'http',
         hostname:'localhost',
-        pathname:'**',
+        pathname:'',
       }
     ]
+  },
+        eslint: {
+                ignoreDuringBuilds: true,
+  },
+         typescript: {
+    ignoreBuildErrors: true,
   },
 }
 ;

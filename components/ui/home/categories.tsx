@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import api from "@/app/api/axios"; // Import the configured axios instance
+import api from "@/app/auth/axios"; // Import the configured axios instance
 import { toast } from "sonner";
 
 interface MenuCategory {

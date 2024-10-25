@@ -36,7 +36,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Combobox } from './multiselect';
 import { Checkbox } from "@/components/ui/checkbox"
-import api from '@/app/api/axios'; // Import the configured axios instance
+import api from '@/app/auth/axios'; // Import the configured axios instance
 
 const formSchema = z.object({
     name: z.string().min(2, {

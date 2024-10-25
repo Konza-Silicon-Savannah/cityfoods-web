@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import api from "@/app/api/axios";
+import api from "@/app/auth/axios";
 
 interface CartItem {
   id: number;

@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
 import Image from "next/image";
 import { toast } from "sonner";
-import api from "@/app/api/axios"; // Import the configured axios instance
+import api from "@/app/auth/axios"; // Import the configured axios instance
 
 interface MenuCategory {
   id: number;
