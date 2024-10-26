@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,10 +30,17 @@ export function UserLoginForm() {
     const router = useRouter();
     
     // Helper function to retrieve cookies by name
-    const getCookie = (name) => {
+    const getCookie = (name: string): string | undefined => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+        
+        // Check if the parts array has at least 2 elements
+        if (parts.length === 2) {
+            const cookieValue = parts.pop()?.split(';').shift(); // Use optional chaining
+            return cookieValue; // This can be undefined
+        }
+        
+        return undefined; // Explicitly return undefined if the cookie is not found
     };
 
     const form = useForm({
@@ -50,7 +57,7 @@ export function UserLoginForm() {
         }
     }, [isRedirecting, router]);
 
-    const onSubmit = async (values) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setApiError("");
         try {
             const response = await fetch('/auth/login', {
@@ -66,7 +73,6 @@ export function UserLoginForm() {
             });
 
             const data = await response.json();
-            // console.log('Login response:', data);
 
             if (!response.ok) {
                 if (data.message) {
@@ -77,10 +83,6 @@ export function UserLoginForm() {
                 return;
             }
 
-            // Tokens are now set as HttpOnly cookies by the server
-            // We don't need to store them in localStorage anymore
-
-            // Retrieve the user role from the cookie
             const userRole = getCookie('userRole');
             if (!userRole) {
                 console.error('User role not found in cookies');
@@ -91,7 +93,6 @@ export function UserLoginForm() {
             console.log('Login successful, preparing to redirect...');
             setIsRedirecting(true);
 
-            // Redirect based on user role
             if (userRole === 'customer') {
                 router.push('/dashboard/home');
             } else if (userRole === 'vendor') {

@@ -18,6 +18,7 @@ interface CartItem {
   name: string;
   price: string;
   quantity: number;
+  vendor: number; // Add vendor ID to the CartItem interface
 }
 
 interface CartProps {

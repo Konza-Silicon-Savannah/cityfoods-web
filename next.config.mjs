@@ -2,22 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // domains: ['localhost', '127.0.0.1'],
+    domains: ['localhost', '127.0.0.1', 'cityfoods.konza.go.ke'],
     remotePatterns: [
       {
-        protocol:'http',
-        hostname:'localhost',
-        pathname:'',
-      }
-    ]
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
-        eslint: {
-                ignoreDuringBuilds: true,
-  },
-         typescript: {
-    ignoreBuildErrors: true,
-  },
-}
-;
+};
 
 export default nextConfig;

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { AxiosError } from "axios";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import api from "@/app/auth/axios"; // Import the configured axios instance
@@ -10,6 +11,10 @@ interface MenuCategory {
   id: number;
   name: string;
   image: string | null;
+}
+
+interface ErrorResponse {
+  detail?: string;
 }
 
 function showToast(message: string) {
@@ -30,8 +35,9 @@ const Categories = () => {
     try {
       const response = await api.get("menu-categories/");
       setCategories(response.data);
-    } catch (error: any) {
-      setError(error.response?.data?.detail || "Error fetching categories");
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+      setError(err.response?.data?.detail || "Error fetching categories");
       console.error("Error fetching categories:", error);
       showToast("Failed to fetch menu categories");
     }

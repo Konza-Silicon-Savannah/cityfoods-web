@@ -61,24 +61,28 @@ function showToast(message: string) {
     });
 }
 
-interface FoodItem {
-  id: number;
-  name: string;
-  price: string;
-  description: string;
-  menu_category: string;
-  days_available: string;
-  image: string;
-}
+interface MenuCategory {
+    id: number;
+    name: string;
+  }
 
 interface FoodEditProps {
-  foodItem: FoodItem;
-  onUpdate: () => void;
+    foodItem: {
+        id: number;
+        menu_category: string; // Ensure this is a correct type
+        name: string;
+        price: string;
+        description: string;
+        available: boolean;
+        image: string | null;
+        days_available: string;
+    };
+    onUpdate: () => void;
 }
 
 export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
 
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<MenuCategory[]>([]);
 
     useEffect(() => {
         fetchCategories();

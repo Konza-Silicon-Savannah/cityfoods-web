@@ -15,10 +15,12 @@ interface Food {
   description: string;
   menu_category: string;
   image: string;
+  vendor: number; // Add vendor ID to the CartItem interface
 }
 
 interface CartItem extends Food {
   quantity: number;
+  
 }
 
 const HomePage = () => {

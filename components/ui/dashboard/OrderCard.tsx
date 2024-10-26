@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import React, { useState, useEffect } from "react";
@@ -50,14 +51,14 @@ export function OrderCard({
   const [transactionCode, setTransactionCode] = useState("");
   const [orderId, setOrderId] = useState<number | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
-  const [checkoutRequestId, setCheckoutRequestId] = useState("");
-  const [merchantRequestId, setMerchantRequestId] = useState("");
-
+  const [checkoutRequestId, setCheckoutRequestId] = useState(""); // TODO: Use this state in payment logic
+  const [merchantRequestId, setMerchantRequestId] = useState(""); // TODO: Use this state in payment logic
+  
   // Fetch user data when component mounts
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("/api/auth/user");
+        const response = await fetch("/auth/auth/user");
         const data = await response.json();
 
         if (!data.user) {

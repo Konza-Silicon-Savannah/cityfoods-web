@@ -5,22 +5,22 @@ import { toast } from "sonner";
 import api from '@/app/auth/axios'; // Import the configured axios instance
 
 
-interface Food {
+interface Foods {
     id: number;
     name: string;
     price: string;
     description: string;
     menu_category: string;
     image: string;
-    vendor: string;
+    vendor: number;
 }
 
 interface FoodItemProps {
-    onAddToCart: (item: Food) => void;
+    onAddToCart: (item: Foods) => void;
 }
 
 const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
-    const [foodItems, setFoodItems] = useState<Food[]>([]);
+    const [foodItems, setFoodItems] = useState<Foods[]>([]);
 
     useEffect(() => {
         const fetchFoodItems = async () => {
@@ -42,7 +42,7 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
     }
     
 
-    const handleAddToCart = (item: Food) => {
+    const handleAddToCart = (item: Foods) => {
         onAddToCart(item);
         showToast(`${item.name} added to cart`);
     };

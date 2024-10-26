@@ -22,7 +22,7 @@ const formSchema = z.object({
     Card: z.string().min(10, {
         message: "card information must be valid number"
     }),
-    cardmonth: z.string().min(10, {
+    cardmonth: z.string().min(5, {
         message: "month must not be in the past"
     }),
     cardcvc: z.string().min(10, {
@@ -48,17 +48,15 @@ export function CardForm() {
     })
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
-        return(
-            showToast(),
-            console.log("form submitted",data)
-        )
+        showToast();
+        console.log("form submitted", data);
     }
+
     function showToast() {
         toast({
             title: "You are paying 1000"
-        }),
-        console.log("Form Submitted");
-    }
+        })
+    };
 
     return (
         <Form {...form}>
@@ -122,7 +120,7 @@ export function CardForm() {
                 <FormField 
                     control={form.control}
                     name="cardbilling"
-                    render={({ field })=> (
+                    render={()=> (
                         <FormItem className="grid">
                             <FormLabel>
                                 Billing address

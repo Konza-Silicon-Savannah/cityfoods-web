@@ -5,6 +5,7 @@ import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
 import Image from "next/image";
 import { toast } from "sonner";
 import api from "@/app/auth/axios"; // Import the configured axios instance
+import { AxiosError } from "axios";
 
 interface MenuCategory {
   id: number;
@@ -13,13 +14,17 @@ interface MenuCategory {
 
 interface FoodItem {
   id: number;
-  menu_category: number;
+  menu_category: string;
   name: string;
   price: string;
   description: string;
   available: boolean;
   image: string | null;
   days_available: string;
+}
+
+interface ErrorResponse {
+  detail?: string;
 }
 
 function showToast(message: string) {
@@ -46,8 +51,9 @@ export function TabsMenu() {
       if (response.data.length > 0) {
         setActiveTab(response.data[0].id.toString());
       }
-    } catch (error: any) {
-      setError(error.response?.data?.detail || "Error fetching categories");
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>
+      setError(err.response?.data?.detail || "Error fetching categories");
       console.error("Error fetching categories:", error);
       showToast("Failed to fetch menu categories");
     }
@@ -57,8 +63,9 @@ export function TabsMenu() {
     try {
       const response = await api.get("food-items/");
       setFoodItems(response.data);
-    } catch (error: any) {
-      setError(error.response?.data?.detail || "Error fetching food items");
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>
+      setError(err.response?.data?.detail || "Error fetching food items");
       console.error("Error fetching food items:", error);
       showToast("Failed to fetch food items");
     }
@@ -68,7 +75,10 @@ export function TabsMenu() {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
-  // Rest of your component remains the same...
+
+  const handleUpdate = () => {
+    fetchFoodItems(); // Re-fetch food items or any other update logic
+  };
 
   return (
     <Tabs
@@ -91,7 +101,7 @@ export function TabsMenu() {
         <TabsContent key={category.id} value={category.id.toString()}>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {foodItems
-              .filter((item) => item.menu_category === category.id)
+              .filter((item) => item.menu_category === category.name)
               .map((item) => (
                 <Card key={item.id}>
                   <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg h-44">
@@ -129,7 +139,7 @@ export function TabsMenu() {
                         {item.price}
                       </span>
                     </p>
-                    <FoodEdit foodItem={item} />
+                    <FoodEdit foodItem={item} onUpdate={handleUpdate}/>
                   </CardFooter>
                 </Card>
               ))}

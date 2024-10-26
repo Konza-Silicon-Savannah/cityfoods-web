@@ -38,6 +38,11 @@ import { Combobox } from './multiselect';
 import { Checkbox } from "@/components/ui/checkbox"
 import api from '@/app/auth/axios'; // Import the configured axios instance
 
+interface MenuCategory {
+    id: number;
+    name: string;
+  }
+
 const formSchema = z.object({
     name: z.string().min(2, {
       message: "Name must be at least 2 characters.",
@@ -59,7 +64,7 @@ function showToast(message: string) {
 }
 
 export default function FoodAdd() {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<MenuCategory[]>([]);
 
     useEffect(() => {
         fetchCategories();
