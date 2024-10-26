@@ -21,7 +21,7 @@ RUN NEXT_PUBLIC_DISABLE_ESLINT=true npm run build
 # Production stage
 FROM base AS production
 # Set environment variable for production
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 
 # Create a user and group for running the application
 RUN addgroup -g 1001 -S nodejs \
@@ -32,7 +32,7 @@ WORKDIR /app
 
 # Install production dependencies only
 COPY package*.json ./
-RUN npm ci --only=development
+RUN npm ci --only=production
 
 # Copy built files and necessary directories from the builder stage
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next

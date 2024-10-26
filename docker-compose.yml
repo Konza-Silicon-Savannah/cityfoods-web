@@ -3,7 +3,7 @@ services:
     image: cityfoods-web
     build:
       context: ./
-      target: dev
+      target: production
       dockerfile: Dockerfile
     volumes:
       - .:/app
