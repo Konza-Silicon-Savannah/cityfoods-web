@@ -102,7 +102,7 @@ export function UserLoginForm() {
                 setApiError('Unknown user role. Please contact support.');
             }
         } catch (error) {
-            console.error('Login error:', error);
+            console.log('Login error:', error);
             setApiError("An unexpected error occurred. Please try again.");
         }
     };
