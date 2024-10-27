@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { PaymentCard } from '@/components/ui/dashboard/PaymentCard'
 // import { OrderCard } from '@/components/ui/dashboard/OrderCard'

@@ -16,7 +16,7 @@ FROM base AS builder
 COPY . .
 
 # Build the application
-RUN NEXT_PUBLIC_DISABLE_ESLINT=true npm run build
+RUN npm run build
 
 # Production stage
 FROM base AS production
