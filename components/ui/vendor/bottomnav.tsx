@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/app/hooks/use-auth';
 import { Button } from '../button';
 
 //Map of links to display in the side navigation.
@@ -29,10 +28,9 @@ const links = [
 
 const BottomLinks = () => {
 
-    const { logout } = useAuth();
 
     const handleLogout = async() => {
-        await logout();
+        // await logout();
     };
 
     return (
