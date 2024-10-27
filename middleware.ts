@@ -1,21 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { secureStorage } from '@/utils/secureStorage';
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
+export function middleware(request: NextRequest) {
+  // Public paths that don't require authentication
+  const publicPaths = ['/signin', '/signup', '/'];
+  const isPublicPath = publicPaths.includes(request.nextUrl.pathname);
 
-  // Exempt the root path and domain name entry
-  if (
-    req.nextUrl.pathname === '/' || 
-    req.nextUrl.origin === 'https://cityfoods.konza.go.ke/' ||
-    req.nextUrl.pathname === '/signin'
-  ) {
-    return NextResponse.next();
+  // Get the token from cookies
+  const token = request.cookies.get('auth_tokens')?.value;
+
+  // Redirect to signin if accessing protected route without token
+  if (!token && !isPublicPath) {
+    return NextResponse.redirect(new URL('/signin', request.url));
   }
 
-  const token = secureStorage.getTokens();
-
-  if (!token) {
-    return NextResponse.redirect(new URL('/signin', req.url));
+  // Redirect to dashboard if accessing auth pages with valid token
+  if (token && isPublicPath) {
+    return NextResponse.redirect(new URL('/dashboard/home', request.url));
   }
 
   return NextResponse.next();
@@ -29,8 +30,7 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - signin, signup (authentication pages)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|signin|signup|login).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };

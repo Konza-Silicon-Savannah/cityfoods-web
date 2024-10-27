@@ -52,14 +52,19 @@ export function UserLoginForm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(values),
+                credentials: 'include', //important for cookie handling
             });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.error || "Login failed");
+            }
 
             const data = await response.json();
 
-            if (!response.ok) {
-                setApiError(data.error || "Login failed. Please try again.");
-                return;
-            }
+            // Set cookie for middleware
+            document.cookie = `auth_tokens=${data.access}; path=/`;
+
 
             // Securely store tokens and user data
             try {
@@ -77,7 +82,7 @@ export function UserLoginForm() {
                 } else if (user?.role === 'vendor') {
                     router.push('/vendor');
                 } else {
-                    setApiError('Unknown user role. Please contact support.');
+                    setApiError('Unknown userI . Please contact support.');
                 }
             } catch (storageError) {
                 console.error('Storage error:', storageError);
