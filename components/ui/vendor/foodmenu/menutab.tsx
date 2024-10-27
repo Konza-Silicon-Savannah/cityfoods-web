@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
 import Image from "next/image";
 import { toast } from "sonner";
-import api from "@/app/auth/axios"; // Import the configured axios instance
+import api from '@/utils/api'; // Import the configured axios instance
 import { AxiosError } from "axios";
 
 interface MenuCategory {
@@ -46,7 +46,7 @@ export function TabsMenu() {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get("menu-categories/");
+      const response = await api.get("api/v1/menu-categories/");
       setCategories(response.data);
       if (response.data.length > 0) {
         setActiveTab(response.data[0].id.toString());
@@ -61,7 +61,7 @@ export function TabsMenu() {
 
   const fetchFoodItems = async () => {
     try {
-      const response = await api.get("food-items/");
+      const response = await api.get("api/v1/food-items/");
       setFoodItems(response.data);
     } catch (error) {
       const err = error as AxiosError<ErrorResponse>

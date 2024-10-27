@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getValidToken } from '@/app/lib/auth';
+import { secureStorage } from '@/utils/secureStorage';
 
 export async function middleware(req: NextRequest) {
 
-  // Exempt the root path and localhost:3000
+  // Exempt the root path and domain name entry
   if (
     req.nextUrl.pathname === '/' || 
-    req.nextUrl.origin === 'http://localhost:3000' ||
-    req.nextUrl.pathname === '/api/login'
+    req.nextUrl.origin === 'https://cityfoods.konza.go.ke/' ||
+    req.nextUrl.pathname === '/signin'
   ) {
     return NextResponse.next();
   }
 
-  const token = await getValidToken(req);
+  const token = secureStorage.getTokens();
 
   if (!token) {
     return NextResponse.redirect(new URL('/signin', req.url));

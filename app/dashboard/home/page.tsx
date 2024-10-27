@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Categories from "@/components/ui/home/categories";
-import withAuth from "@/withAuth";
 import FoodItem from "@/components/ui/dashboard/FoodItem";
 import Cart from "@/components/ui/dashboard/Cart";
 import Image from "next/image";
@@ -127,4 +126,4 @@ const HomePage = () => {
   );
 };
 
-export default withAuth(HomePage);
+export default HomePage;

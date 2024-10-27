@@ -34,7 +34,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Combobox } from './multiselect';
-import api from '@/app/auth/axios'; // Import the configured axios instance
+import api from '@/utils/api'; // Import the configured axios instance
 
 
 
@@ -90,7 +90,7 @@ export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
 
     const fetchCategories = async () => {
         try {
-            const response = await api.get('menu-categories/');
+            const response = await api.get('api/v1/menu-categories/');
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -134,7 +134,7 @@ export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
           }
         }
 
-        await api.patch(`food-items/${foodItem.id}/`, formData, {
+        await api.patch(`api/v1/food-items/${foodItem.id}/`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -151,7 +151,7 @@ export default function FoodEdit({ foodItem, onUpdate }: FoodEditProps) {
     const handleDelete = async () => {
       if (window.confirm("Are you sure you want to delete this food item?")) {
         try {
-          await api.delete(`food-items/${foodItem.id}/`);
+          await api.delete(`api/v1/food-items/${foodItem.id}/`);
           showToast("Food Item Deleted Successfully");
           onUpdate();
         } catch (error) {

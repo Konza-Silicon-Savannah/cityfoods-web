@@ -60,7 +60,7 @@ export function UserSignupForm() {
         setIsLoading(true);
         setApiError("");
         try {
-            const response = await fetch('http://localhost:8000/accounts/api/register/', {
+            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export function UserSignupForm() {
             router.push('/signin/');
         }
         catch (error) {
-            console.error('Registration error:', error);
+            console.log('Registration error:', error);
             setApiError("Unexpected error occured. Please try again.");
         }
         finally {

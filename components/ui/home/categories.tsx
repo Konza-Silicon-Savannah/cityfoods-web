@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import api from "@/app/auth/axios"; // Import the configured axios instance
+import api from "@/utils/api"; // Import the configured axios instance
 import { toast } from "sonner";
 
 interface MenuCategory {
@@ -33,7 +33,7 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get("menu-categories/");
+      const response = await api.get("api/v1/menu-categories/");
       setCategories(response.data);
     } catch (error) {
       const err = error as AxiosError<ErrorResponse>;

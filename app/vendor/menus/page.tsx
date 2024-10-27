@@ -1,7 +1,5 @@
 "use client"
 
-
-import withAuth from '@/withAuth';
 import React from 'react'
 import { TabsMenu } from '@/components/ui/vendor/foodmenu/menutab';
 import FoodAdd from '@/components/ui/vendor/foodmenu/menuadd';
@@ -21,4 +19,4 @@ const MenusPage = () => {
   )
 }
 
-export default withAuth(MenusPage);
+export default MenusPage;

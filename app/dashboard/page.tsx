@@ -2,15 +2,10 @@
 
 import React from "react";
 import HomeDash from "@/components/ui/dashboard/Home";
-import { useAuth } from '@/app/hooks/use-auth';
-
+import { secureStorage } from "@/utils/secureStorage";
 
 const Home = () => {
-  const { isAuthenticated, isLoading } = useAuth();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const isAuthenticated = secureStorage.isAuthenticated();
 
   if (!isAuthenticated) {
     return null; //or a custom unauthorised component

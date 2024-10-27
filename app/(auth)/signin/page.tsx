@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { UserLoginForm } from '@/components/ui/siginin';
+import { UserLoginForm } from '@/components/ui/signin';
 
 const SignInPage = () => {
   return (

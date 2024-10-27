@@ -1,14 +1,11 @@
 "use client"
 
-import { useAuth } from '@/app/hooks/use-auth';
+import { secureStorage } from '@/utils/secureStorage';
 import React from 'react';
 
 const WalletPage = () => {
-  const { isAuthenticated, isLoading } = useAuth();
+  const isAuthenticated = secureStorage.isAuthenticated();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (!isAuthenticated) {
     return null; //or a custom unauthorised component

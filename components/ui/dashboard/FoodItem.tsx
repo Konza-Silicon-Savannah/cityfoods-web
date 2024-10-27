@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import api from '@/app/auth/axios'; // Import the configured axios instance
+import api from '@/utils/api';; // Import the configured axios instance
 
 
 interface Foods {
@@ -25,7 +25,7 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await api.get('food-items/');
+                const response = await api.get('api/v1/food-items/');
                 setFoodItems(response.data);
             } catch (error) {
                 console.error('Error fetching food items:', error);

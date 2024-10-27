@@ -1,6 +1,8 @@
+//components/ui/signin.tsx
+
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,6 +20,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { secureStorage } from "@/utils/secureStorage";
 
 const formSchema = z.object({
     email: z.string().email("Enter a valid email"),
@@ -26,22 +29,9 @@ const formSchema = z.object({
 
 export function UserLoginForm() {
     const [apiError, setApiError] = useState("");
-    const [isRedirecting, setIsRedirecting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     
-    // Helper function to retrieve cookies by name
-    const getCookie = (name: string): string | undefined => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        
-        // Check if the parts array has at least 2 elements
-        if (parts.length === 2) {
-            const cookieValue = parts.pop()?.split(';').shift(); // Use optional chaining
-            return cookieValue; // This can be undefined
-        }
-        
-        return undefined; // Explicitly return undefined if the cookie is not found
-    };
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -51,59 +41,54 @@ export function UserLoginForm() {
         },
     });
 
-    useEffect(() => {
-        if (isRedirecting) {
-            console.log("Attempting to redirect...");
-        }
-    }, [isRedirecting, router]);
-
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setApiError("");
+        setIsLoading(true);
+
         try {
-            const response = await fetch('/auth/login', {
+            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
-                body: JSON.stringify({
-                    email: values.email,
-                    password: values.password,
-                }),
+                body: JSON.stringify(values),
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                if (data.message) {
-                    setApiError(data.message);
+                setApiError(data.error || "Login failed. Please try again.");
+                return;
+            }
+
+            // Securely store tokens and user data
+            try {
+                secureStorage.setTokens({
+                    access: data.access,
+                    refresh: data.refresh
+                });
+                
+                secureStorage.setUser(data.user);
+
+                // Redirect based on user role
+                const user = secureStorage.getUser();
+                if (user?.role === 'customer') {
+                    router.push('/dashboard/home');
+                } else if (user?.role === 'vendor') {
+                    router.push('/vendor');
                 } else {
-                    setApiError("Login failed. Please try again.");
+                    setApiError('Unknown user role. Please contact support.');
                 }
-                return;
+            } catch (storageError) {
+                console.error('Storage error:', storageError);
+                setApiError("Failed to secure session data. Please try again.");
             }
 
-            const userRole = getCookie('userRole');
-            if (!userRole) {
-                console.error('User role not found in cookies');
-                setApiError('Authentication failed: User role not found');
-                return;
-            }
-
-            console.log('Login successful, preparing to redirect...');
-            setIsRedirecting(true);
-
-            if (userRole === 'customer') {
-                router.push('/dashboard/home');
-            } else if (userRole === 'vendor') {
-                router.push('/vendor');
-            } else {
-                console.error('Unknown user role:', userRole);
-                setApiError('Unknown user role. Please contact support.');
-            }
         } catch (error) {
-            console.log('Login error:', error);
+            console.error('Login error:', error);
             setApiError("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -158,7 +143,9 @@ export function UserLoginForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">Submit</Button>
+                <Button type="submit" className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">
+                    {isLoading ? 'Submitting...' : 'Submit'}
+                </Button>
             </form>
             <div className="mt-4">
                 <p className="text-sm text-gray-600">
