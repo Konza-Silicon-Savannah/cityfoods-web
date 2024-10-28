@@ -14,10 +14,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/signin', request.url));
   }
 
-  // Redirect to dashboard if accessing auth pages with valid token
-  if (token && isPublicPath) {
-    return NextResponse.redirect(new URL('/dashboard/home', request.url));
-  }
 
   return NextResponse.next();
 }
