@@ -60,7 +60,7 @@ export function UserSignupForm() {
         setIsLoading(true);
         setApiError("");
         try {
-            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/register/', {
+            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
