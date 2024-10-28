@@ -25,7 +25,7 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await api.get('api/v1/food-items/');
+                const response = await api.get('api/v1/food-items');
                 setFoodItems(response.data);
             } catch (error) {
                 console.error('Error fetching food items:', error);

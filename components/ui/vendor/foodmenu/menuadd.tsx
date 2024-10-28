@@ -72,7 +72,7 @@ export default function FoodAdd() {
 
     const fetchCategories = async () => {
         try {
-            const response = await api.get('/api/v1/menu-categories/');
+            const response = await api.get('/api/v1/menu-categories');
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -111,7 +111,7 @@ export default function FoodAdd() {
                 console.log(key, value);
             });
 
-            const response = await api.post('api/v1/food-items/', formData, {
+            const response = await api.post('api/v1/food-items', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

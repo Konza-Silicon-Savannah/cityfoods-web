@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner"
 import VendorNav from "@/components/ui/vendor/vendornav";
+import { AuthGuard } from "@/components/AuthGuard";
 
 
 export default function RootLayout({
@@ -8,6 +9,7 @@ export default function RootLayout({
     children: React.ReactNode;
   }>) {
     return (
+      <AuthGuard>
         <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
           <div className="w-full flex-none md:w-64">
             <VendorNav />
@@ -17,5 +19,6 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+      </AuthGuard>
     );
 }  

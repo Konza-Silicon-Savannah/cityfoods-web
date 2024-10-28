@@ -46,7 +46,7 @@ export function UserLoginForm() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/login/', {
+            const response = await fetch('https://cityfoods.konza.go.ke/api/v1/accounts/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
