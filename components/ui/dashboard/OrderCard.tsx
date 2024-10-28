@@ -95,7 +95,7 @@ export function OrderCard({
     }
 
     try {
-      const response = await api.post("/orders/", {
+      const response = await api.post("/orders", {
         customer: userId,
         vendor: getUniqueVendors(), // Array of unique vendor IDs from the items
         status: "pending",
@@ -125,7 +125,7 @@ export function OrderCard({
       }));
 
       const requests = orderItems.map((orderItem) =>
-        api.post("/order-items/", orderItem)
+        api.post("/order-items", orderItem)
       );
 
       await Promise.all(requests);
@@ -173,7 +173,7 @@ export function OrderCard({
     }
 
     try {
-      await api.patch(`/orders/${orderId}/`, {
+      await api.patch(`/orders/${orderId}`, {
         transaction_id: transactionCode,
         checkout_request_id: checkoutRequestId,
         merchant_request_id: merchantRequestId,

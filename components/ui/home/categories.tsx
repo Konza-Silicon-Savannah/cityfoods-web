@@ -33,7 +33,7 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get("api/v1/menu-categories/");
+      const response = await api.get("api/v1/menu-categories");
       setCategories(response.data);
     } catch (error) {
       const err = error as AxiosError<ErrorResponse>;
