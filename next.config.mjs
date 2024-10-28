@@ -5,7 +5,7 @@ const nextConfig = {
     domains: ['localhost', '127.0.0.1', 'cityfoods.konza.go.ke'],
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: "http",
         hostname: "**",
       },
     ],
