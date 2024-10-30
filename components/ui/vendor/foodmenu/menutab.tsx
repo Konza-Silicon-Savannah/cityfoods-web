@@ -9,6 +9,11 @@ import { toast } from "sonner";
 import api from '@/utils/api'; // Import the configured axios instance
 import { AxiosError } from "axios";
 
+const ensureHttps = (url: string | null): string => {
+  if (!url) return "";
+  return url.replace(/^http:\/\//i, "https://");
+};
+
 interface MenuCategory {
   id: number;
   name: string;
@@ -110,7 +115,7 @@ export function TabsMenu() {
                     <div className="rounded-full w-full h-32">
                       {item?.image ? (
                         <Image
-                          src={item.image}
+                          src={ensureHttps(item.image)}
                           alt={item.name}
                           className="object-cover h-32 w-full rounded-lg"
                           width={100}
@@ -141,7 +146,7 @@ export function TabsMenu() {
                         {item.price}
                       </span>
                     </p>
-                    <FoodEdit foodItem={item} onUpdate={handleUpdate}/>
+                    <FoodEdit foodItem={item} onUpdate={handleUpdate} />
                   </CardFooter>
                 </Card>
               ))}
