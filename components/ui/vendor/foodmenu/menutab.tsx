@@ -4,15 +4,15 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FoodEdit from "@/components/ui/vendor/foodmenu/menuedit";
-import Image from "next/image";
+// import Image from "next/image";
 import { toast } from "sonner";
 import api from '@/utils/api'; // Import the configured axios instance
 import { AxiosError } from "axios";
 
-const ensureHttps = (url: string | null): string => {
-  if (!url) return "";
-  return url.replace(/^http:\/\//i, "https://");
-};
+// const ensureHttps = (url: string | null): string => {
+//   if (!url) return "";
+//   return url.replace(/^http:\/\//i, "https://");
+// };
 
 interface MenuCategory {
   id: number;
@@ -112,7 +112,7 @@ export function TabsMenu() {
               .map((item) => (
                 <Card key={item.id}>
                   <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg h-44">
-                    <div className="rounded-full w-full h-32">
+                    {/* <div className="rounded-full w-full h-32">
                       {item?.image ? (
                         <Image
                           src={ensureHttps(item.image)}
@@ -126,7 +126,7 @@ export function TabsMenu() {
                       ) : (
                         <p className="p-6">No image available</p>
                       )}
-                    </div>
+                    </div> */}
                     <div className="space-y-2 w-full space-x-6 h-full">
                       <h1 className="font-bold px-6 mt-2">{item.name}</h1>
                       <p id="name" className="text-sm text-bold">
