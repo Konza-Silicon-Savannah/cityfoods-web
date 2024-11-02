@@ -53,12 +53,13 @@ const FoodItem: React.FC<FoodItemProps> = ({ onAddToCart }) => {
                 <div key={item.id} className="max-w-sm bg-white rounded-xl shadow-lg">
                     <div className="grid md:flex items-center w-[220px] md:w-full md:h-32">
                         <Image
-                            src={item.image || "/images/fishmealhero.png"}
+                            src={item.image}
                             alt={item.name}
                             className="object-cover w-full h-32 md:h-32 md:w-32 md:rounded-full "
                             quality={100}
                             width={100}
                             height={100}
+                            unoptimized
                             priority
                         />
                         <div className="md:ml-4 px-2">

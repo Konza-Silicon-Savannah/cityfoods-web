@@ -118,47 +118,55 @@ export function TabsMenu() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
         {foodItems
           .filter((item) => item.menu_category === category.id)
-          .map((item) => (
-            <Card key={item.id}>
-              <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg h-44">
-                <div className="rounded-full w-full h-32">
-                  {item?.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      className="object-cover h-32 w-full rounded-lg"
-                      width={100}
-                      height={32}
-                      sizes="100"
-                      priority
-                    />
-                  ) : (
-                    <p className="p-6">No image available</p>
-                  )}
-                </div>
-                <div className="space-y-2 w-full space-x-6 h-full">
-                  <h1 className="font-bold px-6 mt-2">{item.name}</h1>
-                  <p id="name" className="text-sm text-bold">
-                    {item.description && item.description.length > 18
-                      ? `${item.description.substring(0, 18)}... `
-                      : item.description || "No description available"}
-                    {item.description && item.description.length > 18 && (
-                      <span className="text-blue-600">Read more</span>
+          .map((item) => {
+            // Convert HTTP to HTTPS for image URL
+            const secureImageUrl = item.image
+              ? item.image.replace("http://", "https://")
+              : "";
+
+            return (
+              <Card key={item.id}>
+                <CardContent className="grid items-center place-items-center p-0 m-0 rounded-lg h-44">
+                  <div className="rounded-full w-full h-32">
+                    {secureImageUrl ? (
+                      <Image
+                        src={secureImageUrl}
+                        alt={item.name}
+                        className="object-cover h-32 w-full rounded-lg"
+                        width={100}
+                        height={32}
+                        sizes="100"
+                        unoptimized
+                        priority
+                      />
+                    ) : (
+                      <p className="p-6">No image available</p>
                     )}
+                  </div>
+                  <div className="space-y-2 w-full space-x-6 h-full">
+                    <h1 className="font-bold px-6 mt-2">{item.name}</h1>
+                    <p id="name" className="text-sm text-bold">
+                      {item.description && item.description.length > 18
+                        ? `${item.description.substring(0, 18)}... `
+                        : item.description || "No description available"}
+                      {item.description && item.description.length > 18 && (
+                        <span className="text-blue-600">Read more</span>
+                      )}
+                    </p>
+                  </div>
+                </CardContent>
+                <CardFooter className="justify-between mt-5">
+                  <p className="font-extralight">
+                    Price:{" "}
+                    <span className="text-yellow-900 font-bold text-sm">
+                      {item.price}
+                    </span>
                   </p>
-                </div>
-              </CardContent>
-              <CardFooter className="justify-between mt-5">
-                <p className="font-extralight">
-                  Price:{" "}
-                  <span className="text-yellow-900 font-bold text-sm">
-                    {item.price}
-                  </span>
-                </p>
-                <FoodEdit foodItem={item} onUpdate={handleUpdate} />
-              </CardFooter>
-            </Card>
-          ))}
+                  <FoodEdit foodItem={item} onUpdate={handleUpdate} />
+                </CardFooter>
+              </Card>
+            );
+          })}
       </div>
     </TabsContent>
   );})}
