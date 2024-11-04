@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button } from '../button'
+import { Dropdownlinks } from './dropDown'
 
 const Nav = () => {
   return (
@@ -10,13 +10,8 @@ const Nav = () => {
             City <span className="text-green-500">Foods</span>
         </a>
       </div>
-      <div className="flex lg:hidden">
-        <Button variant="ghost" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-          <span className="sr-only">Open main menu</span>
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </Button>
+      <div className="flex md:hidden">
+        <Dropdownlinks/>
       </div>
       <div className="hidden lg:flex lg:gap-x-12 ">
         <Link href="#" className="text-lg font-semibold leading-4 text-slate-50">Features</Link>
