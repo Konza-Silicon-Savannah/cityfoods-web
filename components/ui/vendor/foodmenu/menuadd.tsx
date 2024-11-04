@@ -120,6 +120,8 @@ export default function FoodAdd() {
             console.log('Food item created:', response.data);
             showToast('Food Item Created Successfully');
             form.reset();
+            // Refresh the page after successful submission
+            window.location.reload();
         } catch (error) {
             console.error('Error creating food item:', error);
             showToast('Failed to create food item');
