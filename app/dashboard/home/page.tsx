@@ -59,14 +59,14 @@ const HomePage = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-green-50 flex flex-col">
+    <div className="w-full min-h-screen bg-black md:bg-green-50 flex flex-col">
       {/* Header Section */}
       <header className="w-full flex justify-between items-center py-3 px-4">
         <div className="flex items-center mx-2">
           <Input
             type="text"
             placeholder="Search for food, and more "
-            className="border-slate-900 md:w-64"
+            className="border-slate-200 md:border-slate-900 md:w-64"
           />
         </div>
         <div className="justify-between items-center flex">
@@ -76,7 +76,7 @@ const HomePage = () => {
             onRemoveItem={removeFromCart}
             onUpdateQuantity={updateQuantity}
           />
-          <div className="relative w-8 h-8 border-2 border-green-700 rounded-full overflow-hidden">
+          <div className="relative w-8 h-8 border-2 border-slate-200 md:border-green-700 rounded-full overflow-hidden">
             <Image
               alt="nice dish of food"
               src="/images/home/avatar.png"
@@ -89,7 +89,7 @@ const HomePage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="w-full mt-6 px-6">
+      <main className="hidden md:grid w-full mt-6 px-6">
         <section className="bg-black rounded-lg">
           <div className="py-4 mx-12 lg:flex lg:items-center lg:justify-between">
             <div className="lg:items-start lg:justify-start text-left px-4">
@@ -119,6 +119,7 @@ const HomePage = () => {
       <div className="">
         <Categories />
       </div>
+      <p className="px-4 font-bold text-slate-200 md:text-black">Food Items</p>
       <div className="">
         <FoodItem onAddToCart={addToCart} />
       </div>

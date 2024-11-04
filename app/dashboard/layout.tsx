@@ -14,7 +14,7 @@ export default function RootLayout({
         <div className="w-full flex-none md:w-48">
           <SideNav />
         </div>
-        <div className="flex-grow p-2 md:overflow-y-auto md:p-0">
+        <div className="flex-grow p-2 md:overflow-y-auto md:p-0 bg-black md:bg-white">
           <Toaster />
           {children}
         </div>

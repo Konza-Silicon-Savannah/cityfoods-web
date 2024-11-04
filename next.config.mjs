@@ -10,7 +10,7 @@ const nextConfig = {
         pathname: "/",
       },
       {
-        protocol: "https",
+        protocol: "http",
         hostname: "cityfoods.konza.go.ke",
         pathname: "/media/",
       },

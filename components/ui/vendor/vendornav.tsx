@@ -7,7 +7,7 @@ import { SheetButton } from './SheetButton'
 
 const VendorNav = () => {
   return (
-    <div className='md:px-2 bg-green-700 text-white'>
+    <div className='md:px-2 bg-black text-white'>
       <div className="flex items-center lg:flex-1 justify-between md:hidden p-2 ">
         <a href="/" className="-m-1.5 p-1.5 font-bold text-lg text-black">
             City <span className="text-green-500">Foods</span>

@@ -18,7 +18,7 @@ const SideNav = () => {
                   href='/'
                   key="logo"
               >
-                  <div className='flex items-center w-32 font-extrabold md:w-40 '>
+                  <div className='flex items-center w-full font-extrabold md:w-full '>
                     City<span className="text-green-500">Foods</span>
                   </div>
               </Link>

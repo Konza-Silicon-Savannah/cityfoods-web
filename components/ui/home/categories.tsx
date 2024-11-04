@@ -50,7 +50,7 @@ const Categories = () => {
   return (
     <section className="w-full mt-4 mb-4">
       <div className="p-6">
-        <p className="font-semibold text-gray-800 capitalize">
+        <p className="font-semibold text-slate-200 md:text-gray-800 capitalize">
           popular categories
         </p>
         <div className="md:grid gap-4 md:gap-16 mt-6 xl:mt-10 md:grid-cols-5 overflow-x-auto md:overflow-x-none flex sm:space-x-4">
@@ -59,32 +59,34 @@ const Categories = () => {
               key={category.id}
               className="grid grid-flow-row border-none shadow-none"
             >
-              <CardContent className="grid items-center place-items-center p-0 md:mt-2">
-                <div className="rounded-full w-32 md:w-32 h-32">
-                  {category?.image ? (
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      className="object-cover h-32 w-32 rounded-full"
-                      height={32}
-                      width={32}
-                      sizes="100"
-                      priority
-                    />
-                  ) : (
-                    <p className="p-6">No image available</p>
-                  )}
+              <CardContent className="grid items-start p-2">
+                <div className="flex items-center justify-between px-10">
+                  <div className="rounded-full w-8 md:w-8 h-8 ">
+                    {category?.image ? (
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        className="object-cover h-8 w-8 rounded"
+                        height={8}
+                        width={8}
+                        sizes="100"
+                        unoptimized
+                        priority
+                      />
+                    ) : (
+                      <p className="font-bold text-sm px-2 capitalize">
+                        {category.name}
+                      </p>
+                    )}
+                  </div>
+                  <div className="w-2/3">
+                    <p className="font-bold text-sm px-2  capitalize">
+                      {category.name}
+                    </p>
+                  </div>
                 </div>
               </CardContent>
-              <CardFooter className="grid justify-center">
-                <div className="md:px-2">
-                  <h1 className="font-bold">{category.name}</h1>
-                </div>
-                <p className="font-extralight md:px-2 text-sm">
-                  Rating <span className="text-yellow-900 font-bold">4.5</span>{" "}
-                  {/* Placeholder rating */}
-                </p>
-              </CardFooter>
+              <CardFooter className="flex justify-center mb-0 p-0"></CardFooter>
             </Card>
           ))}
         </div>

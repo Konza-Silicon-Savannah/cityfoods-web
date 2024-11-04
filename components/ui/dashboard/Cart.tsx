@@ -40,8 +40,8 @@ const Cart: React.FC<CartProps> = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <IconButton className="px-4 text-green-700" aria-label="add to cart">
-          <Badge badgeContent={cartItemCount} color="success">
+        <IconButton className="px-4 text-slate-500 md:text-green-700" aria-label="add to cart">
+          <Badge badgeContent={cartItemCount} className="text-slate-200 md:text-green-700">
             <LocalMallIcon />
           </Badge>
         </IconButton>
